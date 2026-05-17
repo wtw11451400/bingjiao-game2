@@ -11,88 +11,52 @@
       box-sizing: border-box;
     }
     body{
-      background: linear-gradient(#000, #111);
+      background-color: #000;
       color: #fff;
       font-family: "Microsoft YaHei", sans-serif;
       overflow-x: hidden;
-      min-height: 100vh;
-      animation: bgBreath 4s infinite alternate;
-    }
-    @keyframes bgBreath {
-      0% { background: #000; }
-      100% { background: #0a0a0a; }
     }
     .container{
       width: 100vw;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-    .container.show{
-      opacity: 1;
-      transform: translateY(0);
     }
     .title{
-      font-size: 34px;
+      font-size: 32px;
       margin-bottom: 30px;
-      letter-spacing: 3px;
-      text-shadow: 0 0 12px rgba(255,255,255,0.4);
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: 0.6s ease;
+      letter-spacing: 2px;
     }
     .content{
-      font-size: 19px;
-      line-height: 2.2;
-      margin-bottom: 45px;
-      max-width: 620px;
-      opacity: 0;
-      transition: 0.8s ease;
+      font-size: 18px;
+      line-height: 2;
+      margin-bottom: 40px;
+      max-width: 600px;
     }
     .btn{
-      padding: 14px 34px;
-      background-color: #111;
+      padding: 12px 30px;
+      background-color: #222;
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      font-size: 17px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 8px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      transition: all 0.3s;
     }
     .btn:hover{
       background-color: #fff;
       color: #000;
-      transform: scale(1.08);
-      box-shadow: 0 0 20px rgba(255,255,255,0.4);
-    }
-    .btn:active{
-      transform: scale(0.95);
     }
     .hide{
-      display: none !important;
-    }
-    .shake{
-      animation: shake 0.2s 2;
-    }
-    @keyframes shake {
-      0%{ transform: translateX(0); }
-      25%{ transform: translateX(-4px); }
-      75%{ transform: translateX(4px); }
-      100%{ transform: translateX(0); }
+      display: none;
     }
   </style>
 </head>
 <body>
-
   <div class="container" id="page1">
     <div class="title">你来了</div>
     <div class="content">
@@ -146,39 +110,17 @@
   </div>
 
   <script>
-    let current = 1;
-    showPage(1);
-
-    function showPage(num){
-      let all = document.querySelectorAll('.container');
-      all.forEach(i=>{
-        i.classList.remove('show','hide');
-        i.classList.add('hide');
-      });
-      let page = document.getElementById('page'+num);
-      page.classList.remove('hide');
-      setTimeout(()=>{
-        page.classList.add('show');
-        let t = page.querySelector('.title');
-        let c = page.querySelector('.content');
-        setTimeout(()=>{ t.style.opacity=1; t.style.transform='translateY(0)'; },300);
-        setTimeout(()=>{ c.style.opacity=1; },600);
-      },100);
-      current = num;
-    }
-
     function goPage(num){
-      document.body.classList.add('shake');
-      setTimeout(()=>{
-        document.body.classList.remove('shake');
-      },200);
-      setTimeout(()=>{
-        showPage(num);
-      },250);
+      document.querySelectorAll('.container').forEach(item=>{
+        item.classList.add('hide');
+      });
+      document.getElementById('page'+num).classList.remove('hide');
     }
-
     function reset(){
-      goPage(1);
+      document.querySelectorAll('.container').forEach(item=>{
+        item.classList.add('hide');
+      });
+      document.getElementById('page1').classList.remove('hide');
     }
   </script>
 </body>

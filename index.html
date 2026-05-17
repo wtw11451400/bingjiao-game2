@@ -1,127 +1,419 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>幽灵</title>
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body{
-      background-color: #000;
-      color: #fff;
-      font-family: "Microsoft YaHei", sans-serif;
-      overflow-x: hidden;
-    }
-    .container{
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-    .title{
-      font-size: 32px;
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-    }
-    .content{
-      font-size: 18px;
-      line-height: 2;
-      margin-bottom: 40px;
-      max-width: 600px;
-    }
-    .btn{
-      padding: 12px 30px;
-      background-color: #222;
-      color: #fff;
-      border: 1px solid #fff;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .btn:hover{
-      background-color: #fff;
-      color: #000;
-    }
-    .hide{
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>幽影 · 驯化</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(#000, #0a0a0a);
+            color: #fff;
+            font-family: "Microsoft YaHei", sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            animation: bgBreath 4s infinite alternate;
+        }
+        @keyframes bgBreath {
+            0% { background: #000; }
+            100% { background: #0a0a0a; }
+        }
+        .container{
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .container.show{
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .title{
+            font-size: 34px;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(255,255,255,0.4);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: 0.6s ease;
+        }
+        .content{
+            font-size: 19px;
+            line-height: 2.2;
+            margin-bottom: 45px;
+            max-width: 620px;
+            opacity: 0;
+            transition: 0.8s ease;
+            white-space: pre-line;
+        }
+        .btn{
+            padding: 14px 34px;
+            background-color: #111;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+        .btn:hover{
+            background-color: #fff;
+            color: #000;
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
+        .btn:active{
+            transform: scale(0.95);
+        }
+        .hide{
+            display: none !important;
+        }
+        .shake{
+            animation: shake 0.2s 2;
+        }
+        @keyframes shake {
+            0%{ transform: translateX(0); }
+            25%{ transform: translateX(-4px); }
+            75%{ transform: translateX(4px); }
+            100%{ transform: translateX(0); }
+        }
+        .popup {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding:20px;
+        }
+        .popup.show {
+            display: flex;
+        }
+        .popup-inner {
+            background: #111;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            max-width: 450px;
+            width:100%;
+            padding:30px;
+            text-align: center;
+        }
+        .popup-text {
+            font-size: 17px;
+            color: #fff;
+            margin-bottom:25px;
+            line-height:1.8;
+        }
+        .popup-close {
+            padding:10px 25px;
+            background:#222;
+            color:#fff;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="container" id="page1">
-    <div class="title">你来了</div>
-    <div class="content">
-      我等了你很久<br>
-      久到我都快忘了时间<br>
-      你还记得我吗
+    <div class="popup" id="popup">
+        <div class="popup-inner">
+            <div class="popup-text" id="ptext"></div>
+            <button class="popup-close" onclick="closePop()">继续</button>
+        </div>
     </div>
-    <button class="btn" onclick="goPage(2)">记得</button>
-    <button class="btn" onclick="goPage(3)">不记得</button>
-  </div>
 
-  <div class="container hide" id="page2">
-    <div class="title">真好</div>
-    <div class="content">
-      你还记得我<br>
-      那你愿意<br>
-      留下来陪我吗
+    <!-- 主菜单 -->
+    <div class="container" id="menu">
+        <div class="title">幽影 · 驯化</div>
+        <div class="content">
+            选择你要进入的故事线：
+        </div>
+        <button class="btn" onclick="startStory('ghost')">幽灵线</button>
+        <button class="btn" onclick="startStory('tame')">地下室驯化线</button>
     </div>
-    <button class="btn" onclick="goPage(4)">愿意</button>
-    <button class="btn" onclick="goPage(5)">不愿意</button>
-  </div>
 
-  <div class="container hide" id="page3">
-    <div class="title">没关系</div>
-    <div class="content">
-      就算你不记得我<br>
-      我也会<br>
-      一直陪着你
+    <!-- 幽灵线 -->
+    <div class="container hide" id="ghost1">
+        <div class="title">你来了</div>
+        <div class="content">
+            我等了你很久
+            久到我都快忘了时间
+            你还记得我吗
+        </div>
+        <button class="btn" onclick="ghostGo(2)">记得</button>
+        <button class="btn" onclick="ghostGo(3)">不记得</button>
     </div>
-    <button class="btn" onclick="goPage(4)">留下来</button>
-    <button class="btn" onclick="goPage(5)">离开</button>
-  </div>
-
-  <div class="container hide" id="page4">
-    <div class="title">永远</div>
-    <div class="content">
-      我们会永远在一起<br>
-      再也不分开
+    <div class="container hide" id="ghost2">
+        <div class="title">真好</div>
+        <div class="content">
+            你还记得我
+            那你愿意
+            留下来陪我吗
+        </div>
+        <button class="btn" onclick="ghostGo(4)">愿意</button>
+        <button class="btn" onclick="ghostGo(5)">不愿意</button>
     </div>
-    <button class="btn" onclick="reset()">重新开始</button>
-  </div>
-
-  <div class="container hide" id="page5">
-    <div class="title">别走</div>
-    <div class="content">
-      别走<br>
-      留下来<br>
-      陪我
+    <div class="container hide" id="ghost3">
+        <div class="title">没关系</div>
+        <div class="content">
+            就算你不记得我
+            我也会
+            一直陪着你
+        </div>
+        <button class="btn" onclick="ghostGo(4)">留下来</button>
+        <button class="btn" onclick="ghostGo(5)">离开</button>
     </div>
-    <button class="btn" onclick="reset()">回来</button>
-  </div>
+    <div class="container hide" id="ghost4">
+        <div class="title">永远</div>
+        <div class="content">
+            我们会永远在一起
+            再也不分开
+        </div>
+        <button class="btn" onclick="reset()">返回主菜单</button>
+    </div>
+    <div class="container hide" id="ghost5">
+        <div class="title">别走</div>
+        <div class="content">
+            别走
+            留下来
+            陪我
+        </div>
+        <button class="btn" onclick="reset()">回来</button>
+    </div>
 
-  <script>
-    function goPage(num){
-      document.querySelectorAll('.container').forEach(item=>{
-        item.classList.add('hide');
-      });
-      document.getElementById('page'+num).classList.remove('hide');
-    }
-    function reset(){
-      document.querySelectorAll('.container').forEach(item=>{
-        item.classList.add('hide');
-      });
-      document.getElementById('page1').classList.remove('hide');
-    }
-  </script>
+    <!-- 地下室驯化线 -->
+    <div class="container hide" id="tameStart">
+        <div class="title">序章 · 地下室囚笼</div>
+        <div class="content">
+            你醒来时，发现自己躺在冰冷的地下室地板上，手腕被铁链锁住，四周一片昏暗。
+            角落里，那个一直暗恋你的病娇少女正蹲在那里，眼神里翻涌着疯狂的爱意与占有欲。
+            「终于把你绑回来了，」她笑着，「这样你就永远属于我了」。
+        </div>
+        <button class="btn" onclick="tameGo('resist1')">挣扎反抗，大声怒骂</button>
+        <button class="btn" onclick="tameGo('obey1')">冷静下来，假意顺从</button>
+        <button class="btn" onclick="tameGo('beg1')">温柔哄骗，求她放你走</button>
+    </div>
+    <div class="container hide" id="tameResist1">
+        <div class="title">初次反抗 · 激起她的疯狂</div>
+        <div class="content">
+            你挣扎着想要挣脱铁链，怒骂她的疯狂行为。
+            她却像是被点燃了兴奋开关，一步步靠近你，指尖划过你的脸颊，语气带着病态的兴奋：
+            「反抗吧，越反抗我越想要你」。她的眼神里，占有欲已经快要溢出来了。
+        </div>
+        <button class="btn" onclick="tameGo('obey2')">突然服软，说「我怕了」</button>
+        <button class="btn" onclick="tameGo('angry1')">恶语辱骂，激怒她</button>
+    </div>
+    <div class="container hide" id="tameObey1">
+        <div class="title">假意顺从 · 初次试探</div>
+        <div class="content">
+            你没有反抗，只是平静地看着她，甚至对她露出了一丝微笑。
+            她反而愣住了，原本准备好的疯狂台词全都卡在了喉咙里，眼神里第一次出现了迷茫。
+            「你…不生气吗？」她小声问，语气里带着一丝不安。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep1')">主动靠近她，说「我陪你好不好」</button>
+        <button class="btn" onclick="tameGo('silent2')">继续沉默，不说话</button>
+    </div>
+    <div class="container hide" id="tameBeg1">
+        <div class="title">哀求无用 · 偏执加深</div>
+        <div class="content">
+            你温柔地哄骗她，求她放你离开。
+            她脸上的笑容瞬间消失，取而代之的是冰冷的偏执。
+            「放你走？」她冷笑，「你走了，我怎么办？」
+            她靠近你，眼神疯狂：「你只能在这里，只能属于我」。
+        </div>
+        <button class="btn" onclick="tameGo('obey2')">立刻服软，说「我不走了，我陪你」</button>
+        <button class="btn" onclick="tameGo('angry1')">继续哀求，承诺会回来</button>
+    </div>
+    <div class="container hide" id="tameObey2">
+        <div class="title">初次顺从 · 她的松动</div>
+        <div class="content">
+            你终于服软，表现出顺从的样子。
+            她的眼神瞬间柔和了下来，甚至解开了你手上的一根铁链。
+            「早这样不就好了吗？」她笑着，语气里带着一丝宠溺。
+            她开始给你喂水喂饭，眼神里的疯狂渐渐被温柔取代。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep1')">继续顺从，说「我听你的」</button>
+        <button class="btn" onclick="tameGo('question1')">试探性地提出小要求</button>
+    </div>
+    <div class="container hide" id="tameAngry1">
+        <div class="title">激怒她 · 惩罚的开端</div>
+        <div class="content">
+            你的恶语辱骂彻底激怒了她，她的眼神瞬间变得冰冷，没有一丝温度。
+            她一把抓住你的头发，强迫你看着她：「你再骂一句试试？」
+            她的语气里，带着彻骨的寒意和疯狂。
+        </div>
+        <button class="btn" onclick="tameGo('obey2')">立刻服软，道歉求饶</button>
+        <button class="btn" onclick="tameGo('angry2')">继续辱骂，彻底激怒她</button>
+    </div>
+    <div class="container hide" id="tameSilent2">
+        <div class="title">持续沉默 · 她的依赖加深</div>
+        <div class="content">
+            你依旧保持沉默，可她的不安却渐渐变成了依赖。
+            她开始围着你转，给你做饭、讲故事，甚至把自己的心事都讲给你听。
+            她越来越依赖你的存在，只要你看她一眼，她就会开心很久。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep1')">第一次主动和她说话</button>
+        <button class="btn" onclick="tameGo('tameStep2')">依旧沉默，只是偶尔点头回应</button>
+    </div>
+    <div class="container hide" id="tameAngry2">
+        <div class="title">彻底疯狂 · 极致的控制</div>
+        <div class="content">
+            你彻底激怒了她，她撕掉了所有温柔的伪装，眼神里只剩下疯狂的占有欲。
+            她用铁链把你牢牢绑住，拿出了药物和针管：
+            「看来，只能用这种方式，让你永远乖下去了」。
+            她的语气冰冷，没有一丝温度。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep1')">彻底服软，哭着求饶</button>
+        <button class="btn" onclick="tameGo('tameStep2')">放弃反抗，彻底躺平</button>
+    </div>
+    <div class="container hide" id="tameQuestion1">
+        <div class="title">提出要求 · 她的松动</div>
+        <div class="content">
+            你试探性地提出小要求，比如想喝口水，或者想坐起来。
+            她愣了一下，然后点了点头，帮你解开了部分束缚。
+            「只要你乖，什么都可以」她笑着，语气里带着一丝宠溺。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep1')">继续提出要求，比如想洗澡</button>
+        <button class="btn" onclick="tameGo('angry1')">提出过分要求，比如要她放你出去</button>
+    </div>
+    <div class="container hide" id="tameStep1">
+        <div class="title">驯化第一步 · 依赖与顺从</div>
+        <div class="content">
+            你的顺从和温柔，让她彻底放下了防备。
+            她开始对你言听计从，你说什么她都信，甚至主动解开了你所有的铁链。
+            她的眼神里，疯狂的占有欲渐渐变成了对你的依赖和崇拜，你说的话，就是她的命令。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep2')">命令她「以后只能听我的话」</button>
+        <button class="btn" onclick="tameGo('tameStep3')">命令她「双手要一直比耶」</button>
+    </div>
+    <div class="container hide" id="tameStep2">
+        <div class="title">驯化第二步 · 绝对服从</div>
+        <div class="content">
+            她已经彻底依赖你、崇拜你，把你当成了她的全世界。
+            你说的每一句话，她都奉为圣旨，哪怕是让她伤害自己，她也会毫不犹豫地去做。
+            她的眼神里，只剩下对你的顺从和崇拜，再也没有了之前的疯狂和偏执。
+        </div>
+        <button class="btn" onclick="tameGo('tameStep3')">命令她「以后只能说「哦 齁齁齁」」</button>
+        <button class="btn" onclick="tameGo('tameStep3')">命令她「只能叫我主人，别的都不能叫」</button>
+    </div>
+    <div class="container hide" id="tameStep3">
+        <div class="title">驯化第三步 · 彻底改造</div>
+        <div class="content">
+            她已经被你彻底驯化了。
+            她的世界里，只剩下你一个人。
+            她会乖乖地双手比耶，只会重复你教她的话：「哦…齁齁齁…」，还有一声声「主人…」。
+            她的眼神里，没有了疯狂，没有了偏执，只有对你的绝对顺从和崇拜。
+        </div>
+        <button class="btn" onclick="tameGo('endingGood')">继续命令她，强化她的行为</button>
+    </div>
+    <div class="container hide" id="tameEnding">
+        <div class="title">结局 · 你的专属玩偶</div>
+        <div class="content">
+            她被你彻底驯化了。
+            她的世界里，再也没有自己的想法，没有自己的情绪，只有你。
+            她会乖乖地双手比耶，只会重复你教她的话：「哦…齁齁齁…」，还有一声声软糯的「主人…」。
+            她成了你的专属玩偶，永远只属于你一个人，再也不会离开你，也不会再伤害你。
+
+            【她的驯化独白】
+            「主人…我只会听你的话…双手要比耶…只能说哦…齁齁齁…主人…」
+        </div>
+        <button class="btn" onclick="reset()">返回主菜单</button>
+    </div>
+
+    <script>
+        let currentStory = null;
+        let currentPage = null;
+
+        function showPop(text){
+            document.getElementById("ptext").innerText = text;
+            document.getElementById("popup").classList.add("show");
+        }
+        function closePop(){
+            document.getElementById("popup").classList.remove("show");
+        }
+
+        function showPage(pageId){
+            let all = document.querySelectorAll('.container');
+            all.forEach(i=>{
+                i.classList.remove('show','hide');
+                i.classList.add('hide');
+            });
+            let page = document.getElementById(pageId);
+            page.classList.remove('hide');
+            setTimeout(()=>{
+                page.classList.add('show');
+                let t = page.querySelector('.title');
+                let c = page.querySelector('.content');
+                setTimeout(()=>{ t.style.opacity=1; t.style.transform='translateY(0)'; },300);
+                setTimeout(()=>{ c.style.opacity=1; },600);
+            },100);
+            currentPage = pageId;
+        }
+
+        function startStory(type){
+            document.body.classList.add('shake');
+            setTimeout(()=>{
+                document.body.classList.remove('shake');
+            },200);
+            currentStory = type;
+            if(type === 'ghost'){
+                showPage('ghost1');
+            }else if(type === 'tame'){
+                showPage('tameStart');
+            }
+        }
+
+        function ghostGo(num){
+            document.body.classList.add('shake');
+            setTimeout(()=>{
+                document.body.classList.remove('shake');
+            },200);
+            setTimeout(()=>{
+                showPage('ghost'+num);
+            },250);
+        }
+
+        function tameGo(page){
+            document.body.classList.add('shake');
+            setTimeout(()=>{
+                document.body.classList.remove('shake');
+            },200);
+            setTimeout(()=>{
+                if(page === 'endingGood'){
+                    showPage('tameEnding');
+                }else{
+                    showPage('tame'+page.charAt(0).toUpperCase() + page.slice(1));
+                }
+            },250);
+        }
+
+        function reset(){
+            document.body.classList.add('shake');
+            setTimeout(()=>{
+                document.body.classList.remove('shake');
+            },200);
+            setTimeout(()=>{
+                showPage('menu');
+                currentStory = null;
+            },250);
+        }
+
+        // 初始显示主菜单
+        showPage('menu');
+    </script>
 </body>
 </html>

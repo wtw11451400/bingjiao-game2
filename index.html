@@ -1,333 +1,185 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>地下室 · 驯化游戏</title>
-    <style>
-        body {
-            background: #0a0a0a;
-            color: #eee;
-            font-family: "Microsoft YaHei", sans-serif;
-            line-height: 1.8;
-            min-height: 100vh;
-            padding: 15px;
-            overflow-x: hidden;
-        }
-        .game-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #111;
-            padding: 25px 20px;
-            border-radius: 12px;
-            border: 1px solid #ff3333;
-            box-shadow: 0 0 30px rgba(255, 50, 50, 0.3);
-        }
-        .title {
-            color: #ff4444;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #ff0000;
-        }
-        .text {
-            font-size: 16px;
-            min-height: 200px;
-            margin-bottom: 25px;
-            white-space: pre-line;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin: 8px 0;
-            background: #1a1a1a;
-            color: #ddd;
-            border: 1px solid #ff4444;
-            border-radius: 8px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #ff3333;
-            color: #fff;
-        }
-        .popup {
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding:20px;
-        }
-        .popup.show {
-            display: flex;
-        }
-        .popup-inner {
-            background: #111;
-            border: 2px solid #ff4444;
-            border-radius: 12px;
-            max-width: 450px;
-            width:100%;
-            padding:30px;
-            text-align: center;
-        }
-        .popup-text {
-            font-size: 17px;
-            color: #ff7777;
-            margin-bottom:25px;
-            line-height:1.8;
-        }
-        .popup-close {
-            padding:10px 25px;
-            background:#ff4444;
-            color:#fff;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-        }
-        .barrage {
-            position: fixed;
-            color: #ff5050;
-            font-size: 15px;
-            font-weight: bold;
-            text-shadow: 0 0 6px #ff0000;
-            white-space: nowrap;
-            z-index: 100;
-            pointer-events: none;
-            animation: barrageMove 6s linear forwards;
-        }
-        @keyframes barrageMove {
-            from { right: -200px; }
-            to { right: 120%; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幽灵</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background: linear-gradient(#000, #111);
+      color: #fff;
+      font-family: "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      animation: bgBreath 4s infinite alternate;
+    }
+    @keyframes bgBreath {
+      0% { background: #000; }
+      100% { background: #0a0a0a; }
+    }
+    .container{
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .container.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .title{
+      font-size: 34px;
+      margin-bottom: 30px;
+      letter-spacing: 3px;
+      text-shadow: 0 0 12px rgba(255,255,255,0.4);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: 0.6s ease;
+    }
+    .content{
+      font-size: 19px;
+      line-height: 2.2;
+      margin-bottom: 45px;
+      max-width: 620px;
+      opacity: 0;
+      transition: 0.8s ease;
+    }
+    .btn{
+      padding: 14px 34px;
+      background-color: #111;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 8px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .btn:hover{
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .btn:active{
+      transform: scale(0.95);
+    }
+    .hide{
+      display: none !important;
+    }
+    .shake{
+      animation: shake 0.2s 2;
+    }
+    @keyframes shake {
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-4px); }
+      75%{ transform: translateX(4px); }
+      100%{ transform: translateX(0); }
+    }
+  </style>
 </head>
 <body>
-    <div class="popup" id="popup">
-        <div class="popup-inner">
-            <div class="popup-text" id="ptext"></div>
-            <button class="popup-close" onclick="closePop()">继续</button>
-        </div>
+
+  <div class="container" id="page1">
+    <div class="title">你来了</div>
+    <div class="content">
+      我等了你很久<br>
+      久到我都快忘了时间<br>
+      你还记得我吗
     </div>
+    <button class="btn" onclick="goPage(2)">记得</button>
+    <button class="btn" onclick="goPage(3)">不记得</button>
+  </div>
 
-    <div class="game-box">
-        <div class="title" id="gtitle"></div>
-        <div class="text" id="gtext"></div>
-        <div id="gbtns"></div>
+  <div class="container hide" id="page2">
+    <div class="title">真好</div>
+    <div class="content">
+      你还记得我<br>
+      那你愿意<br>
+      留下来陪我吗
     </div>
+    <button class="btn" onclick="goPage(4)">愿意</button>
+    <button class="btn" onclick="goPage(5)">不愿意</button>
+  </div>
 
-<script>
-    let now = "start";
-    let tame = 0; // 驯化进度 0-100
-    let wait = null;
+  <div class="container hide" id="page3">
+    <div class="title">没关系</div>
+    <div class="content">
+      就算你不记得我<br>
+      我也会<br>
+      一直陪着你
+    </div>
+    <button class="btn" onclick="goPage(4)">留下来</button>
+    <button class="btn" onclick="goPage(5)">离开</button>
+  </div>
 
-    function createBarrage(text){
-        let div = document.createElement("div");
-        div.className = "barrage";
-        div.innerText = text;
-        div.style.top = Math.random() * 85 + "%";
-        document.body.appendChild(div);
-        setTimeout(()=>div.remove(),6000);
+  <div class="container hide" id="page4">
+    <div class="title">永远</div>
+    <div class="content">
+      我们会永远在一起<br>
+      再也不分开
+    </div>
+    <button class="btn" onclick="reset()">重新开始</button>
+  </div>
+
+  <div class="container hide" id="page5">
+    <div class="title">别走</div>
+    <div class="content">
+      别走<br>
+      留下来<br>
+      陪我
+    </div>
+    <button class="btn" onclick="reset()">回来</button>
+  </div>
+
+  <script>
+    let current = 1;
+    showPage(1);
+
+    function showPage(num){
+      let all = document.querySelectorAll('.container');
+      all.forEach(i=>{
+        i.classList.remove('show','hide');
+        i.classList.add('hide');
+      });
+      let page = document.getElementById('page'+num);
+      page.classList.remove('hide');
+      setTimeout(()=>{
+        page.classList.add('show');
+        let t = page.querySelector('.title');
+        let c = page.querySelector('.content');
+        setTimeout(()=>{ t.style.opacity=1; t.style.transform='translateY(0)'; },300);
+        setTimeout(()=>{ c.style.opacity=1; },600);
+      },100);
+      current = num;
     }
 
-    function showPop(text){
-        document.getElementById("ptext").innerText = text;
-        document.getElementById("popup").classList.add("show");
-    }
-    function closePop(){
-        document.getElementById("popup").classList.remove("show");
-        if(wait){
-            now = wait;
-            wait = null;
-            load();
-        }
+    function goPage(num){
+      document.body.classList.add('shake');
+      setTimeout(()=>{
+        document.body.classList.remove('shake');
+      },200);
+      setTimeout(()=>{
+        showPage(num);
+      },250);
     }
 
-    function go(to, pop, barrages, addTame){
-        if(addTame) tame = Math.min(100, tame + addTame);
-        if(pop){
-            wait = to;
-            showPop(pop);
-        }else{
-            now = to;
-            load();
-        }
-        if(barrages){
-            barrages.forEach(txt => createBarrage(txt));
-        }
+    function reset(){
+      goPage(1);
     }
-
-    function load(){
-        let s = story[now];
-        if(!s) return;
-        document.getElementById("gtitle").innerText = s.title;
-        document.getElementById("gtext").innerText = s.text + (s.diary ? "\n\n" + s.diary : "");
-        let box = document.getElementById("gbtns");
-        box.innerHTML = "";
-        s.btns.forEach(b=>{
-            let btn = document.createElement("button");
-            btn.className = "btn";
-            btn.innerText = b.txt;
-            btn.onclick = ()=>{go(b.to, b.pop, b.barrages, b.addTame);};
-            box.appendChild(btn);
-        });
-    }
-
-    const story = {
-        start:{
-            title:"序章 · 地下室囚笼",
-            text:"你醒来时，发现自己躺在冰冷的地下室地板上，手腕被铁链锁住，四周一片昏暗。角落里，那个一直暗恋你的病娇少女正蹲在那里，眼神里翻涌着疯狂的爱意与占有欲。「终于把你绑回来了，」她笑着，「这样你就永远属于我了」。",
-            btns:[
-                {txt:"挣扎反抗，大声怒骂",to:"resist1",pop:"😈 反抗只会让她更兴奋，她舔了舔嘴唇",barrages:["反抗也没用哦主人","越反抗越喜欢","你是我的"],addTame:0},
-                {txt:"冷静下来，假意顺从",to:"obey1",pop:"😈 你这么乖，她反而愣住了，眼神迷茫",barrages:["你怎么不反抗？","好奇怪…","但还是好喜欢你"],addTame:5},
-                {txt:"温柔哄骗，求她放你走",to:"beg1",pop:"😈 她的笑容扭曲起来，「放你走？不可能」",barrages:["放你走？别做梦了","你只能在这里","我不会放你走的"],addTame:-5},
-                {txt:"沉默地看着她，一言不发",to:"silent1",pop:"😈 你的沉默让她不安，她攥紧了衣角",barrages:["你为什么不说话？","看着我！","别不理我"],addTame:3}
-            ]
-        },
-        resist1:{
-            title:"初次反抗 · 激起她的疯狂",
-            text:"你挣扎着想要挣脱铁链，怒骂她的疯狂行为。她却像是被点燃了兴奋开关，一步步靠近你，指尖划过你的脸颊，语气带着病态的兴奋：「反抗吧，越反抗我越想要你」。她的眼神里，占有欲已经快要溢出来了。",
-            btns:[
-                {txt:"继续挣扎，试图挣脱",to:"resist2",pop:"😈 她按住你的肩膀，凑近你耳边：「别白费力气了」",barrages:["挣扎也没用的主人","我会把你绑得更紧","你逃不掉的"],addTame:-3},
-                {txt:"突然服软，说「我怕了」",to:"obey2",pop:"😈 她愣了一下，然后笑得更开心了：「早这样不就好了」",barrages:["早服软就不用受苦了","乖一点，我会对你好的","继续乖下去哦"],addTame:10},
-                {txt:"恶语辱骂，激怒她",to:"angry1",pop:"😈 她的眼神瞬间冷了下来，「看来得给你点教训」",barrages:["你惹我生气了主人","看来得惩罚你了","别逼我做狠事"],addTame:-8},
-                {txt:"假装崩溃，哭着求饶",to:"obey2",pop:"😈 她心软了，抱住你：「别哭了，我会疼你的」",barrages:["别哭了主人","我会心疼的","乖乖的就好"],addTame:8}
-            ]
-        },
-        obey1:{
-            title:"假意顺从 · 初次试探",
-            text:"你没有反抗，只是平静地看着她，甚至对她露出了一丝微笑。她反而愣住了，原本准备好的疯狂台词全都卡在了喉咙里，眼神里第一次出现了迷茫。「你…不生气吗？」她小声问，语气里带着一丝不安。",
-            btns:[
-                {txt:"轻声说「我只是不想惹你生气」",to:"obey2",pop:"😈 她的脸瞬间红了，「你…你好乖」",barrages:["你好乖…","继续乖下去","我会对你好的"],addTame:12},
-                {txt:"问她「你打算把我关在这里多久？」",to:"question1",pop:"😈 她的眼神瞬间又变得偏执：「一辈子」",barrages:["一辈子都在这里","你只能和我在一起","别想离开"],addTame:-5},
-                {txt:"主动靠近她，说「我陪你好不好」",to:"tameStep1",pop:"😈 她浑身一僵，整个人都慌了神",barrages:["主人…你…","你为什么对我这么好？","我好喜欢你…"],addTame:15},
-                {txt:"继续沉默，不说话",to:"silent2",pop:"😈 她越来越不安，开始自言自语",barrages:["你为什么不说话？","是不是讨厌我？","别讨厌我…"],addTame:5}
-            ]
-        },
-        beg1:{
-            title:"哀求无用 · 偏执加深",
-            text:"你温柔地哄骗她，求她放你离开。她脸上的笑容瞬间消失，取而代之的是冰冷的偏执。「放你走？」她冷笑，「你走了，我怎么办？」她靠近你，眼神疯狂：「你只能在这里，只能属于我」。",
-            btns:[
-                {txt:"继续哀求，承诺会回来",to:"angry1",pop:"😈 她根本不信，「你只会骗我」",barrages:["别骗我了主人","你不会回来的","我不会再信你了"],addTame:-10},
-                {txt:"放弃哀求，冷脸看着她",to:"silent2",pop:"😈 她慌了，「你别这样看着我」",barrages:["别这样看着我…","我会害怕的","别讨厌我"],addTame:2},
-                {txt:"立刻服软，说「我不走了，我陪你」",to:"obey2",pop:"😈 她瞬间笑了：「真的？太好了！」",barrages:["真的不走了？","太好了！","那我们永远在一起"],addTame:10},
-                {txt:"假意答应她，说「我永远陪着你」",to:"tameStep1",pop:"😈 她信了，抱着你哭了出来",barrages:["永远陪着我…","太好了…","主人…"],addTame:8}
-            ]
-        },
-        silent1:{
-            title:"沉默对峙 · 她的不安",
-            text:"你一言不发，只是静静地看着她。这种无视让她彻底慌了神，她开始在你面前走来走去，一会儿说要给你做饭，一会儿又说要给你讲故事，可你始终没有回应。她的不安越来越强烈，眼神里的偏执开始转化为对你的依赖。",
-            btns:[
-                {txt:"第一次开口，说「我饿了」",to:"tameStep1",pop:"😈 她瞬间眼睛亮了：「我马上给你做！」",barrages:["主人说话了！","太好了！","我马上就去！"],addTame:12},
-                {txt:"依旧沉默，只是闭上眼睛休息",to:"silent2",pop:"😈 她急了，「你别不理我！」",barrages:["别不理我…","我会疯的…","求求你看看我"],addTame:3},
-                {txt:"突然开口骂她，打破沉默",to:"angry1",pop:"😈 她的情绪瞬间崩溃，「你为什么要这样！」",barrages:["为什么要骂我…","我做错了什么？","别骂我…"],addTame:-8},
-                {txt:"轻声说「我在这里」，安抚她",to:"tameStep1",pop:"😈 她瞬间哭了，扑进你怀里",barrages:["你在这里…","太好了…","主人…"],addTame:15}
-            ]
-        },
-        resist2:{
-            title:"持续反抗 · 惩罚与恐惧",
-            text:"你依旧激烈反抗，她的耐心彻底耗尽了。她用铁链把你的手脚绑得更紧，拿出了一把小刀，轻轻划过你的皮肤：「看来，不给你点教训，你是不会乖的」。她的眼神冰冷，语气里没有一丝温度。",
-            btns:[
-                {txt:"立刻服软，说「我不敢了」",to:"obey2",pop:"😈 她笑了，「早听话不就好了」",barrages:["早服软就不用受苦了","继续乖下去","我会对你好的"],addTame:10},
-                {txt:"继续反抗，和她硬碰硬",to:"angry2",pop:"😈 她彻底疯了，用刀抵住你的脖子",barrages:["你逼我的…","别怪我心狠","你会乖的"],addTame:-15},
-                {txt:"害怕地哭了出来，说「我听你的」",to:"obey2",pop:"😈 她心软了，抱住你：「别怕，我不会伤害你」",barrages:["别怕主人","我会保护你的","乖一点就好"],addTame:8},
-                {txt:"放弃反抗，彻底躺平",to:"tameStep1",pop:"😈 她愣住了，「你…不反抗了？」",barrages:["不反抗了？","好奇怪…","但我还是喜欢你"],addTame:12}
-            ]
-        },
-        angry1:{
-            title:"激怒她 · 惩罚的开端",
-            text:"你的恶语辱骂彻底激怒了她，她的眼神瞬间变得冰冷，没有一丝温度。她一把抓住你的头发，强迫你看着她：「你再骂一句试试？」她的语气里，带着彻骨的寒意和疯狂。",
-            btns:[
-                {txt:"立刻服软，道歉求饶",to:"obey2",pop:"😈 她松开手，冷笑：「早这样不就好了」",barrages:["早道歉就不用受苦了","下次别再惹我生气","乖一点"],addTame:8},
-                {txt:"继续辱骂，彻底激怒她",to:"angry2",pop:"😈 她的眼神彻底疯了，「看来得彻底教训你」",barrages:["你彻底惹我生气了","别怪我心狠","你会乖的"],addTame:-12},
-                {txt:"哭着说「我错了，我怕了」",to:"obey2",pop:"😈 她心软了，「别哭了，我不罚你了」",barrages:["别哭了主人","我不罚你了","乖一点就好"],addTame:6},
-                {txt:"沉默下来，不再说话",to:"silent2",pop:"😈 她也冷静下来，「别再惹我生气了」",barrages:["别再惹我生气了","我不想伤害你","但我会的"],addTame:3}
-            ]
-        },
-        obey2:{
-            title:"初次顺从 · 她的松动",
-            text:"你终于服软，表现出顺从的样子。她的眼神瞬间柔和了下来，甚至解开了你手上的一根铁链。「早这样不就好了吗？」她笑着，语气里带着一丝宠溺。她开始给你喂水喂饭，眼神里的疯狂渐渐被温柔取代。",
-            btns:[
-                {txt:"继续顺从，说「我听你的」",to:"tameStep1",pop:"😈 她开心极了，「你好乖！」",barrages:["你好乖主人","继续乖下去","我会更喜欢你的"],addTame:10},
-                {txt:"试探性地提出小要求",to:"question1",pop:"😈 她愣了一下，然后点了点头：「可以」",barrages:["你想要什么？","我都给你","只要你乖"],addTame:5},
-                {txt:"假装顺从，实则寻找逃跑机会",to:"angry1",pop:"😈 她发现了你的小动作，眼神瞬间冷了",barrages:["你想跑？","看来还没教训够","别骗我了"],addTame:-10},
-                {txt:"主动靠近她，蹭她的手",to:"tameStep1",pop:"😈 她浑身一颤，脸红到了耳根",barrages:["主人…你…","别这样…","我好喜欢你…"],addTame:12}
-            ]
-        },
-        silent2:{
-            title:"持续沉默 · 她的依赖加深",
-            text:"你依旧保持沉默，可她的不安却渐渐变成了依赖。她开始围着你转，给你做饭、讲故事，甚至把自己的心事都讲给你听。她越来越依赖你的存在，只要你看她一眼，她就会开心很久。",
-            btns:[
-                {txt:"第一次主动和她说话",to:"tameStep1",pop:"😈 她瞬间眼睛亮了，「主人你和我说话了！」",barrages:["主人和我说话了！","太好了！","我好开心！"],addTame:15},
-                {txt:"依旧沉默，只是偶尔点头回应",to:"tameStep2",pop:"😈 她也习惯了，「你点头就是同意了对不对？」",barrages:["点头就是同意！","太好了！","主人还是在意我的"],addTame:8},
-                {txt:"突然开口说「我饿了」",to:"tameStep1",pop:"😈 她立刻跑出去给你做饭，速度飞快",barrages:["我马上就去！","主人饿了！","不能让主人饿着"],addTame:10},
-                {txt:"沉默地看着她，眼神里带着温柔",to:"tameStep2",pop:"😈 她脸红了，「你…你别这么看着我」",barrages:["别这么看着我…","我会害羞的…","主人好温柔…"],addTame:12}
-            ]
-        },
-        angry2:{
-            title:"彻底疯狂 · 极致的控制",
-            text:"你彻底激怒了她，她撕掉了所有温柔的伪装，眼神里只剩下疯狂的占有欲。她用铁链把你牢牢绑住，拿出了药物和针管：「看来，只能用这种方式，让你永远乖下去了」。她的语气冰冷，没有一丝温度。",
-            btns:[
-                {txt:"彻底服软，哭着求饶",to:"tameStep1",pop:"😈 她停下了动作，「早听话不就好了」",barrages:["早服软就不用受苦了","继续乖下去","我会对你好的"],addTame:12},
-                {txt:"放弃反抗，彻底躺平",to:"tameStep2",pop:"😈 她愣住了，然后笑了：「看来你终于乖了」",barrages:["终于乖了…","太好了…","主人"],addTame:10},
-                {txt:"假意顺从，寻找机会",to:"angry2",pop:"😈 她一眼看穿了你的把戏，「别骗我了」",barrages:["别骗我了主人","我不会再信你了","只能用药物了"],addTame:-15},
-                {txt:"主动说「我只属于你」，安抚她",to:"tameStep1",pop:"😈 她瞬间哭了，抱住你：「真的吗？」",barrages:["只属于我…","真的吗？","太好了…"],addTame:15}
-            ]
-        },
-        question1:{
-            title:"提出要求 · 她的松动",
-            text:"你试探性地提出小要求，比如想喝口水，或者想坐起来。她愣了一下，然后点了点头，帮你解开了部分束缚。「只要你乖，什么都可以」她笑着，语气里带着一丝宠溺。",
-            btns:[
-                {txt:"继续提出要求，比如想洗澡",to:"tameStep1",pop:"😈 她犹豫了一下，还是答应了",barrages:["想洗澡？可以…","只要你乖","别跑哦"],addTame:8},
-                {txt:"提出过分要求，比如要她放你出去",to:"angry1",pop:"😈 她的笑容瞬间消失了：「不行」",barrages:["放你出去？不行！","你会跑掉的","别想了"],addTame:-10},
-                {txt:"说「我只想要你陪我」",to:"tameStep1",pop:"😈 她感动得哭了：「我会一直陪着你」",barrages:["只想要我陪…","太好了…","主人…"],addTame:15},
-                {txt:"说「我会一直在这里陪你」",to:"tameStep2",pop:"😈 她信了，开始对你放下防备",barrages:["一直陪着我…","真的吗？","太好了…"],addTame:12}
-            ]
-        },
-        tameStep1:{
-            title:"驯化第一步 · 依赖与顺从",
-            text:"你的顺从和温柔，让她彻底放下了防备。她开始对你言听计从，你说什么她都信，甚至主动解开了你所有的铁链。她的眼神里，疯狂的占有欲渐渐变成了对你的依赖和崇拜，你说的话，就是她的命令。",
-            btns:[
-                {txt:"命令她「以后只能听我的话」",to:"tameStep2",pop:"😈 她立刻点头：「嗯！我只听主人的话！」",barrages:["只听主人的话！","主人说什么就是什么！","我是主人的"],addTame:10},
-                {txt:"命令她「只能叫我主人」",to:"tameStep2",pop:"😈 她脸红了，小声说：「是…主人」",barrages:["主人…","我叫主人了…","主人"],addTame:12},
-                {txt:"命令她「别再想以前的事」",to:"tameStep2",pop:"😈 她点头：「我只记得主人！」",barrages:["只记得主人！","以前的事都忘了！","只有主人"],addTame:8},
-                {txt:"命令她「以后双手要乖乖比耶」",to:"tameStep3",pop:"😈 她愣了一下，然后立刻举起手比耶",barrages:["这样吗主人？","我会一直比耶的！","主人满意吗？"],addTame:15}
-            ]
-        },
-        tameStep2:{
-            title:"驯化第二步 · 绝对服从",
-            text:"她已经彻底依赖你、崇拜你，把你当成了她的全世界。你说的每一句话，她都奉为圣旨，哪怕是让她伤害自己，她也会毫不犹豫地去做。她的眼神里，只剩下对你的顺从和崇拜，再也没有了之前的疯狂和偏执。",
-            btns:[
-                {txt:"命令她「以后只能说「哦 齁齁齁」」",to:"tameStep3",pop:"😈 她愣了一下，然后开始小声说：「哦…齁齁齁…」",barrages:["哦…齁齁齁…","主人…这样吗？","我只会说这个了"],addTame:12},
-                {txt:"命令她「以后不许和别人说话」",to:"tameStep3",pop:"😈 她点头：「我只和主人说话！」",barrages:["只和主人说话！","别人我都不理！","只有主人"],addTame:8},
-                {txt:"命令她「双手要一直比耶」",to:"tameStep3",pop:"😈 她立刻举起手，一直保持着比耶的姿势",barrages:["这样吗主人？","我会一直保持的！","主人满意吗？"],addTame:10},
-                {txt:"命令她「只能叫我主人，别的都不能叫」",to:"tameStep3",pop:"😈 她只会看着你，小声叫：「主人…」",barrages:["主人…","我只会叫主人了…","主人"],addTame:12}
-            ]
-        },
-        tameStep3:{
-            title:"驯化第三步 · 彻底改造",
-            text:"她已经被你彻底驯化了。她的世界里，只剩下你一个人。她只会乖乖听你的命令，双手永远保持着比耶的姿势，嘴里只会重复你教她的话：「哦…齁齁齁…」，还有一声声「主人…」。她的眼神里，没有了疯狂，没有了偏执，只有对你的绝对顺从和崇拜。",
-            btns:[
-                {txt:"继续命令她，强化她的行为",to:"endingGood",pop:"😈 她只会乖乖照做，重复着你教她的话",barrages:["哦…齁齁齁…","主人…","只会听主人的话"],addTame:10},
-                {txt:"温柔地对她说话，让她放松",to:"endingGood",pop:"😈 她只会看着你，露出傻笑",barrages:["主人…","齁齁齁…","主人…"],addTame:5},
-                {txt:"测试她，说「你说一句别的话试试」",to:"endingGood",pop:"😈 她只会慌乱地重复：「哦…齁齁齁…主人…」",barrages:["哦…齁齁齁…","主人…","不会说别的…"],addTame:8},
-                {txt:"告诉她「以后就叫我主人，只听我的」",to:"endingGood",pop:"😈 她用力点头，只会说：「主人…哦…齁齁齁…」",barrages:["主人…","哦…齁齁齁…","只会听主人的"],addTame:12}
-            ]
-        },
-        endingGood:{
-            title:"结局 · 你的专属玩偶",
-            text:"她被你彻底驯化了。她的世界里，再也没有自己的想法，没有自己的情绪，只有你。她会乖乖地双手比耶，只会重复你教她的话：「哦…齁齁齁…」，还有一声声软糯的「主人…」。她成了你的专属玩偶，永远只属于你一个人，再也不会离开你，也不会再伤害你。",
-            diary:"【她的驯化独白】\n「主人…我只会听你的话…双手要比耶…只能说哦…齁齁齁…主人…」\n她的眼神空洞，却带着对你的绝对顺从，像一个被彻底改造的玩偶，永远留在了你的身边。",
-            btns:[{txt:"重新开始游戏",to:"restart"}]
-        }
-    };
-
-    // 启动
-    load();
-</script>
+  </script>
 </body>
 </html>

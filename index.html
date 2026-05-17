@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>猩红囚笼 · 终极驯化</title>
+    <title>猩红囚笼：偏执玩偶</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{
@@ -12,12 +12,12 @@
             font-family:"Microsoft YaHei",sans-serif;
             min-height:100vh;
             overflow-x:hidden;
-            background:linear-gradient(#000,#050505);
-            animation:breath 5s infinite alternate ease-in-out;
+            background:linear-gradient(#000,#040404);
+            animation:breath 6s infinite alternate ease-in-out;
         }
         @keyframes breath{
             0%{background:#000;}
-            100%{background:#080808;}
+            100%{background:#060606;}
         }
         .page{
             width:100%;
@@ -30,7 +30,7 @@
             padding:30px 20px;
             opacity:0;
             pointer-events:none;
-            transition:all 0.5s ease;
+            transition:all 0.45s ease;
             position:absolute;
             top:0;left:0;
         }
@@ -42,378 +42,483 @@
         }
         .title{
             font-size:40px;
-            margin-bottom:30px;
-            color:#ff2222;
-            text-shadow:0 0 25px #ff0000;
+            margin-bottom:32px;
+            color:#ff2020;
+            text-shadow:0 0 26px #ff0000;
             font-weight:bold;
-            letter-spacing:3px;
+            letter-spacing:4px;
         }
         .content{
-            font-size:22px;
-            max-width:700px;
-            line-height:2.4;
-            margin-bottom:45px;
+            font-size:21px;
+            max-width:720px;
+            line-height:2.5;
+            margin-bottom:48px;
             white-space:pre-line;
-            color:#e8e8e8;
+            color:#e4e4e4;
         }
         .btn{
-            padding:18px 40px;
-            margin:10px;
-            background:#0f0f0f;
+            padding:17px 42px;
+            margin:11px 9px;
+            background:#0b0b0b;
             color:#fff;
-            border:2px solid #ff3333;
-            border-radius:15px;
-            font-size:19px;
+            border:2px solid #ff2e2e;
+            border-radius:16px;
+            font-size:18px;
             cursor:pointer;
             transition:0.3s ease;
         }
         .btn:hover{
-            background:#ff1e1e;
-            transform:scale(1.1);
-            box-shadow:0 0 20px #ff2222;
+            background:#ff1818;
+            transform:scale(1.11);
+            box-shadow:0 0 22px #ff2222;
         }
         .barrage{
             position:fixed;
-            font-size:26px;
+            font-size:25px;
             font-weight:900;
             color:#ff2222;
-            text-shadow:0 0 15px #ff0000;
+            text-shadow:0 0 14px #ff0000;
             white-space:nowrap;
             z-index:9999;
             pointer-events:none;
-            animation:barrageMove 7s linear forwards;
+            animation:barrageMove 7.2s linear forwards;
         }
         @keyframes barrageMove{
             from{transform:translateX(100vw);}
-            to{transform:translateX(-130%);}
+            to{transform:translateX(-140%);}
         }
     </style>
 </head>
 <body>
 
-<!-- 开篇 -->
 <div class="page active" id="p0">
-    <div class="title">猩红囚笼 · 终极驯化</div>
-    <div class="content">无尽的黑暗，潮湿的地底，没有时间，没有尽头。
-一位被执念吞噬的幽灵少女，在此守候了你无数岁月。
-她温柔、病态、偏执、疯狂。
-而你，是她唯一的光，唯一的主人。
-踏入这里，你将永远无法离开。</div>
-    <button class="btn" onclick="go(1)">进入黑暗</button>
+    <div class="title">猩红囚笼：偏执玩偶</div>
+    <div class="content">永无天光的地底领域，铁链低鸣，暗红微光摇曳不定。
+一位银发少女舍弃人性、封存理智，只为留住唯一的你。
+这里没有重复的温柔，没有雷同的疯狂。
+每一次选择，都会触发她独有的偏执互动。
+你，愿意走进这座只为你打造的囚笼吗？</div>
+    <button class="btn" onclick="go(1)">踏入深渊</button>
 </div>
 
-<!-- 1 -->
 <div class="page" id="p1">
-    <div class="title">苏醒</div>
-    <div class="content">你在冰冷的地面上醒来，手腕被铁链轻轻束缚。
-不远处，一位白衣少女跪坐着，血色的眼眸一瞬不瞬地盯着你。
-她的呼吸轻柔，却带着令人窒息的占有欲。
-“你醒了……我等了你好久好久，久到快要忘记时间了。”</div>
-    <button class="btn" onclick="go(2)">温柔询问她是谁</button>
-    <button class="btn" onclick="go(3)">沉默观察她的举动</button>
-    <button class="btn" onclick="go(4)">用力挣扎想要逃脱</button>
+    <div class="title">寒铁锁身</div>
+    <div class="content">你在刺骨寒意中睁眼，手腕被冰冷铁链牢牢扣住。
+石壁潮湿，暗红微光缓慢闪烁。
+银发少女安静跪坐在你身侧，血色瞳孔一眨不眨凝视你。
+她指尖轻轻刮过铁链，发出细碎刺耳摩擦声。
+“主人，你终于回来了……我等得好寂寞。”</div>
+    <button class="btn" onclick="go(2)">温柔轻声呼唤她名字【耳尖泛红】</button>
+    <button class="btn" onclick="go(3)">低头观察铁链纹路【攥紧衣角】</button>
+    <button class="btn" onclick="go(4)">抬眼冷漠直视她【咬住下唇】</button>
 </div>
 
-<!-- 2 -->
 <div class="page" id="p2">
-    <div class="title">温柔的陷阱</div>
-    <div class="content">少女听到你的声音，身体微微一颤，慢慢爬到你的身边。
-她冰凉的指尖触碰你的脸颊，眼神痴迷又温柔。
-“我是只属于你的人哦……
-为了和你永远在一起，我建造了这个只属于我们的小世界。
-没有人能进来，没有人能抢走你。”</div>
-    <button class="btn" onclick="go(5)">安抚她不安的情绪</button>
-    <button class="btn" onclick="go(6)">询问外面的世界</button>
+    <div class="title">耳根泛红的依赖</div>
+    <div class="content">你温和呼唤她，少女耳朵瞬间染上绯红。
+她猛地抬头，小心翼翼贴近你的侧脸，鼻尖轻蹭你的脖颈。
+微凉呼吸喷洒在皮肤上，贪恋地嗅着你的气息。
+“主人……你愿意叫我名字……我好开心。
+不要对我这么温柔，我会忍不住想要把你藏得更深。”</div>
+    <button class="btn" onclick="go(5)">抬手抚摸她银发【贴紧胸口】</button>
+    <button class="btn" onclick="go(6)">轻声询问铁链用途【缠绕手指】</button>
 </div>
 
-<!-- 3 -->
 <div class="page" id="p3">
-    <div class="title">凝视</div>
-    <div class="content">你一言不发，只是静静地看着她。
-被你注视的瞬间，她脸颊泛红，呼吸变得急促。
-“不要这样看着我……我会忍不住想把你藏起来。
-全世界，只有我可以看着你，只有我可以拥有你。”</div>
-    <button class="btn" onclick="go(5)">主动对她温柔说话</button>
-    <button class="btn" onclick="go(7)">继续保持冷漠</button>
+    <div class="title">占有欲萌芽</div>
+    <div class="content">你注意力落在铁链上，少女瞬间不满地抿紧嘴唇。
+她伸手攥住自己衣角，指节泛白，悄悄把铁链往自己身后收。
+“主人为什么要看铁链……不要看别的东西。
+你的视线，只能停留在我的身上，不可以分给杂物。”</div>
+    <button class="btn" onclick="go(5)">转移视线看向她【抬头紧盯】</button>
+    <button class="btn" onclick="go(7)">伸手触碰铁链【抓住手腕】</button>
 </div>
 
-<!-- 4 -->
 <div class="page" id="p4">
-    <div class="title">偏执</div>
-    <div class="content">铁链发出清脆的声响，你的挣扎让她眼神瞬间变得疯狂。
-“别挣扎了……你越反抗，我就越想把你锁得更紧。
-你是我的，从头到脚，从身体到灵魂，全部都是我的。
-你哪里也去不了。”</div>
-    <button class="btn" onclick="go(8)">停止挣扎乖乖顺从</button>
-    <button class="btn" onclick="go(9)">大声呵斥让她放开</button>
+    <div class="title">隐忍的疯狂</div>
+    <div class="content">你冰冷直白的注视让她心慌。
+她咬住下唇，牙齿轻微陷进肉里，强压下躁动的执念。
+“主人……不要这样看着我。
+我会控制不住，想要把你彻底锁死在我怀里。”</div>
+    <button class="btn" onclick="go(5)">缓和目光温柔一点【松弛肩膀】</button>
+    <button class="btn" onclick="go(8)">保持冷漠一动不动【眼眶泛红】</button>
 </div>
 
-<!-- 5 -->
 <div class="page" id="p5">
-    <div class="title">融化</div>
-    <div class="content">你的温柔像一束光，照亮了她阴暗的世界。
-她激动地抱住你，眼泪无声地滑落。
-“太好了……你没有讨厌我。
-我好怕，好怕你会离开我，好怕你会不理我。
-我会很乖很乖，只求你不要丢下我。”</div>
-    <button class="btn" onclick="go(10)">摸摸她的头</button>
-    <button class="btn" onclick="go(11)">承诺永远陪着她</button>
+    <div class="title">沦陷的体温</div>
+    <div class="content">你的触碰让她浑身轻颤，顺势将脸颊贴在你的胸口。
+她手臂轻轻环住你的腰，不敢用力，怕惹你反感。
+“好温暖……主人的温度是全世界最珍贵的东西。
+我想把这一刻永远封存，永远不要结束。”</div>
+    <button class="btn" onclick="go(9)">轻声告诉她不用害怕【抱紧】</button>
+    <button class="btn" onclick="go(10)">单手托起她下巴【瞳孔失神】</button>
 </div>
 
-<!-- 6 -->
 <div class="page" id="p6">
-    <div class="title">禁忌</div>
-    <div class="content">听到“外面”两个字，她的脸色瞬间阴沉下来。
-她用力捂住你的嘴，眼神恐惧又疯狂。
-“不许说！不许想外面！
-外面的人会把你抢走的！
-这里才是你的家，我才是你的一切！”</div>
-    <button class="btn" onclick="go(10)">答应她再也不离开</button>
-    <button class="btn" onclick="go(12)">坚持想要离开</button>
+    <div class="title">锁链告白</div>
+    <div class="content">她纤细手指缠绕住你的指尖，十指紧扣。
+“锁链是用来留住主人的工具。
+我知道这样很坏、很偏执、很自私。
+可是……我真的承受不住失去你的痛苦。”</div>
+    <button class="btn" onclick="go(9)">告诉她不会离开【握紧双手】</button>
+    <button class="btn" onclick="go(11)">让她解开锁链【指尖僵硬】</button>
 </div>
 
-<!-- 7 -->
 <div class="page" id="p7">
-    <div class="title">不安</div>
-    <div class="content">你的冷漠让她浑身发抖，极度的不安吞噬了她。
-她蜷缩在角落，用空洞的眼神看着你。
-“为什么不理我……是不是我做错了什么？
-如果你不要我了，我就……我就把你的腿打断，这样你就永远走不了了。”</div>
-    <button class="btn" onclick="go(10)">立刻温柔安慰她</button>
-    <button class="btn" onclick="go(12)">依旧冷漠无视</button>
+    <div class="title">本能禁锢</div>
+    <div class="content">你指尖碰到铁链的瞬间，她猛地抓住你的手腕。
+力道不大，却带着不容挣脱的固执。
+血色瞳孔骤然加深，眼底闪过一丝危险红光。
+“不可以碰……这是困住主人的枷锁。
+若是你触碰它，我会忍不住现在就锁住你一辈子。”</div>
+    <button class="btn" onclick="go(11)">顺从收回手【揉手腕】</button>
+    <button class="btn" onclick="go(12)">故意再次触碰【低头黑化笑】</button>
 </div>
 
-<!-- 8 -->
 <div class="page" id="p8">
-    <div class="title">顺从</div>
-    <div class="content">你不再挣扎，她的疯狂瞬间消失。
-她乖巧地跪在你面前，像一只认错的小狗。
-“对不起……我刚才吓到你了吗？
-我只是太爱你了，爱到不知道该怎么办。
-只要你不离开，我什么都愿意做。”</div>
-    <button class="btn" onclick="go(13)">命令她听你的话</button>
-    <button class="btn" onclick="go(14)">原谅她的冲动</button>
+    <div class="title">压抑的泪滴</div>
+    <div class="content">你全程沉默冷淡，她终于忍不住红了眼眶。
+晶莹泪珠悬在眼角，倔强不肯落下。
+“我是不是做得不够好……是不是惹人讨厌？
+只要主人愿意理我，我什么都愿意改。”</div>
+    <button class="btn" onclick="go(9)">开口温柔安慰【扑进怀里】</button>
+    <button class="btn" onclick="go(12)">依旧一言不发【阴暗加重】</button>
 </div>
 
-<!-- 9 -->
 <div class="page" id="p9">
-    <div class="title">黑化</div>
-    <div class="content">你的呵斥彻底点燃了她的阴暗面。
-周围的空气变得冰冷，红光在黑暗中闪烁。
-“既然你不听话……那我就只能让你坏掉了。
-把你的骄傲，你的反抗，你的自由，全部都毁掉。
-这样，你就永远只属于我一个人了。”</div>
-    <button class="btn" onclick="go(13)">害怕并选择顺从</button>
-    <button class="btn" onclick="go(15)">继续强硬对抗</button>
+    <div class="title">执念安定</div>
+    <div class="content">一句安抚，让她所有不安尽数消散。
+她轻轻抱紧你的腰，脸颊埋在你的锁骨处。
+“我相信主人……我全部相信。
+哪怕全世界都骗我，我也永远相信你。”</div>
+    <button class="btn" onclick="go(13)">牵住她的手往前走【死死扣住】</button>
+    <button class="btn" onclick="go(14)">停下凝视她双眼【闪躲呼吸乱】</button>
 </div>
 
-<!-- 10 -->
 <div class="page" id="p10">
-    <div class="title">依赖</div>
-    <div class="content">你的触碰让她彻底沦陷，满心满眼都是你。
-她贪婪地感受着你的温度，一刻也不想分离。
-“好温暖……这就是我一直想要的感觉。
-主人，我好喜欢你，最喜欢最喜欢了。
-我愿意做你最听话的宠物。”</div>
-    <button class="btn" onclick="go(16)">让她发誓永远忠诚</button>
-    <button class="btn" onclick="go(17)">引导她变得温顺</button>
+    <div class="title">心跳失控</div>
+    <div class="content">你单手托起她下巴，迫使她抬头看向你。
+少女瞳孔放大，呼吸瞬间紊乱，整个人失神呆滞。
+“主人……不要这样看着我。
+我的心跳……快要炸开了。”</div>
+    <button class="btn" onclick="go(13)">带她前往回廊【任由牵引】</button>
+    <button class="btn" onclick="go(15)">低头凑近拉近距离【闭眼屏息】</button>
 </div>
 
-<!-- 11 -->
 <div class="page" id="p11">
-    <div class="title">永恒</div>
-    <div class="content">你的承诺，成为了她生命的全部意义。
-她激动得浑身颤抖，将你紧紧抱住。
-“真的吗？永远在一起？
-太好了……我把我的灵魂献给你，我的一切都是你的。
-生生世世，永不分离。”</div>
-    <button class="btn" onclick="go(16)">确立主人身份</button>
-    <button class="btn" onclick="go(18)">给予她永恒的陪伴</button>
+    <div class="title">迟疑的放手</div>
+    <div class="content">她指尖僵硬迟疑，盯着锁链迟迟不敢动手。
+最终她咬咬牙，缓慢解开冰冷铁链。
+手腕红痕清晰可见，那是长久禁锢留下的印记。
+“我相信主人……千万不要辜负我的信任。”</div>
+    <button class="btn" onclick="go(14)">擦去手腕红痕【轻颤】</button>
+    <button class="btn" onclick="go(16)">主动握住她【身体一震】</button>
 </div>
 
-<!-- 12 -->
 <div class="page" id="p12">
-    <div class="title">疯狂</div>
-    <div class="content">你执意离开的想法，让她彻底陷入绝望与疯狂。
-她面无表情地看着你，眼神空洞得吓人。
-“我明白了……你终究是要离开我。
-那我就只能把你永远锁在这里，
-让你永远，永远都无法逃离我。”</div>
-    <button class="btn" onclick="go(16)">妥协并留下</button>
-    <button class="btn" onclick="go(15)">接受她的疯狂</button>
+    <div class="title">病态浅笑</div>
+    <div class="content">你不断刺激铁链、或是持续冷漠，让她彻底压抑不住阴暗。
+她低头轻笑，声音轻柔却刺骨，发丝遮住半边血色眼眸。
+“主人好像……很喜欢惹我生气。
+没关系，变坏一点的我，才能更好留住你。”</div>
+    <button class="btn" onclick="go(16)">主动示弱安抚【背后抱】</button>
+    <button class="btn" onclick="go(17)">直视黑化模样【划脖颈】</button>
 </div>
 
-<!-- 13 -->
 <div class="page" id="p13">
-    <div class="title">掌控</div>
-    <div class="content">你掌握了主动权，她心甘情愿地臣服于你。
-“主人……我听你的，我都听你的。
-你的命令就是一切，我绝对不会违抗。
-只要能留在你身边，我什么都愿意做。”</div>
-    <button class="btn" onclick="go(19)">让她永远双手比耶</button>
-    <button class="btn" onclick="go(20)">让她只说专属话语</button>
+    <div class="title">十指执念</div>
+    <div class="content">你牵起她的手，她立刻死死扣紧，生怕下一秒断开。
+她一路安静跟随，目光全程黏在你的侧脸上。
+“这条路只有我们两个人，永远不会有人打扰。
+主人往前走，我永远跟在身后。”</div>
+    <button class="btn" onclick="go(18)">进入私密卧房【攥袖口】</button>
+    <button class="btn" onclick="go(19)">中途回头看她【慌乱低头】</button>
 </div>
 
-<!-- 14 -->
 <div class="page" id="p14">
-    <div class="title">温柔</div>
-    <div class="content">你的温柔治愈了她心底的伤口。
-她变得无比乖巧，不再偏执，不再疯狂。
-“主人好温柔……我会改掉所有坏毛病，
-只做主人最喜欢的样子，永远陪着主人。”</div>
-    <button class="btn" onclick="go(19)">开始驯化</button>
-    <button class="btn" onclick="go(22)">温柔治愈她</button>
+    <div class="title">眼神纠缠</div>
+    <div class="content">你停下脚步专注凝视她，她慌乱躲闪目光。
+少女耳尖持续发烫，不敢与你长久对视。
+“不要一直看着我……我会害羞。
+主人的眼神太温柔，我会彻底沦陷进去。”</div>
+    <button class="btn" onclick="go(18)">进入卧房休息【乖巧点头】</button>
+    <button class="btn" onclick="go(20)">伸手刮一下鼻梁【缩脖子】</button>
 </div>
 
-<!-- 15 -->
 <div class="page" id="p15">
-    <div class="title">崩坏</div>
-    <div class="content">她的心智彻底崩坏，只剩下对你的执念。
-“坏掉了也没关系……只要能和主人在一起。
-没有意识也没关系，不能思考也没关系，
-只要我还能陪着你，就足够了。”</div>
-    <button class="btn" onclick="go(23)">接受崩坏的她</button>
+    <div class="title">咫尺之间</div>
+    <div class="content">你刻意拉近彼此距离，鼻尖几乎相触。
+她紧张闭眼，长睫毛轻轻颤动，身体僵硬不敢乱动。
+“好近……主人，我快无法思考了。
+全部思绪，全部心跳，都被你夺走了。”</div>
+    <button class="btn" onclick="go(20)">揉一揉她头发【往掌心蹭】</button>
+    <button class="btn" onclick="go(21)">低声在耳边说话【耳朵通红】</button>
 </div>
 
-<!-- 16 -->
 <div class="page" id="p16">
-    <div class="title">绝对</div>
-    <div class="content">你成为了她绝对的主宰，她的唯一信仰。
-“我的主人，我的神，我的一切。
-我愿意被你驯化，被你占有，被你支配。
-我的全身，我的灵魂，都刻上你的名字。”</div>
-    <button class="btn" onclick="go(19)">肢体驯化</button>
-    <button class="btn" onclick="go(20)">语言驯化</button>
+    <div class="title">反向救赎</div>
+    <div class="content">获得自由的你非但没有逃离，反而主动握住她。
+少女身躯猛地一颤，怔怔地看着你。
+她轻轻靠在你肩头，语气软糯沙哑。
+“原来……主人真的不会丢下我。”</div>
+    <button class="btn" onclick="go(21)">耳边低语安抚【屏息聆听】</button>
+    <button class="btn" onclick="go(22)">说不会逃走【咬唇忍哭】</button>
 </div>
 
-<!-- 17 -->
 <div class="page" id="p17">
-    <div class="title">温顺</div>
-    <div class="content">在你的引导下，她变得无比软糯温顺。
-没有了疯狂，只剩下纯粹的爱恋与依赖。
-“主人……我会一直一直乖，
-一直一直陪着你，永远不分开。”</div>
-    <button class="btn" onclick="go(19)">姿势定型</button>
-    <button class="btn" onclick="go(20)">语言设定</button>
+    <div class="title">危险摩挲</div>
+    <div class="content">她微凉指尖缓慢划过你的脖颈，动作轻柔又危险。
+血色瞳孔紧紧锁定你的喉结，眼神痴迷且贪婪。
+“主人的身体好漂亮……每一寸我都想要珍藏。
+如果可以，我想把你融进我的骨血里，永不分离。”</div>
+    <button class="btn" onclick="go(22)">表达不会离开【用力抱紧】</button>
+    <button class="btn" onclick="go(23)">命令收敛偏执【收回手低头】</button>
 </div>
 
-<!-- 18 -->
 <div class="page" id="p18">
-    <div class="title">羁绊</div>
-    <div class="content">你们的灵魂紧紧绑定在一起，再也无法分离。
-“此生，来世，生生世世，我都只跟着你。
-我的世界只有你，我的眼里只有你。
-永远，永远，永远。”</div>
-    <button class="btn" onclick="go(24)">完美结局</button>
+    <div class="title">温柔寝居</div>
+    <div class="content">卧房昏暗柔软，红色薄纱轻轻飘动。
+屋内只有一张大床、一盏暗红夜灯。
+“这里是我专门为主人打造的卧室，只属于我们两个人。”</div>
+    <button class="btn" onclick="go(24)">让她坐身边【拘谨并拢腿】</button>
+    <button class="btn" onclick="go(25)">让她靠肩上【小心贴合】</button>
 </div>
 
-<!-- 19 -->
 <div class="page" id="p19">
-    <div class="title">姿态</div>
-    <div class="content">她立刻高高举起双手，比出最标准的耶。
-“主人……这样好看吗？
-我会永远保持这个样子，永远不会放下。
-这是只属于主人的姿势。”</div>
-    <button class="btn" onclick="go(24)">最终驯化</button>
+    <div class="title">回望心动</div>
+    <div class="content">你突然回头，她瞬间慌乱、眼神躲闪。
+手指无意识搅动自己发丝，少女感十足。
+“主人为什么回头……是不是想看我？
+如果想看，我可以永远站在这里给你看。”</div>
+    <button class="btn" onclick="go(24)">带她坐下休息【乖巧听从】</button>
+    <button class="btn" onclick="go(26)">直白夸奖好看【脸颊爆红】</button>
 </div>
 
-<!-- 20 -->
 <div class="page" id="p20">
-    <div class="title">呢喃</div>
-    <div class="content">她张开口，只会重复着你教她的话语。
-“哦……齁齁齁……主人……主人……”
-所有的语言都已消失，只剩下对你的呼唤。</div>
-    <button class="btn" onclick="go(24)">完成驯化</button>
+    <div class="title">微小宠溺</div>
+    <div class="content">你指尖轻刮她鼻梁，她下意识缩了缩脖子。
+像一只乖巧软糯的小兽，毫无防备任由你捉弄。
+“主人好坏……但是我好喜欢。
+无论主人怎么捉弄我，我都不会躲开。”</div>
+    <button class="btn" onclick="go(26)">夸赞颜值【埋胸口害羞】</button>
+    <button class="btn" onclick="go(27)">抚摸她后背【舒服轻喘】</button>
 </div>
 
-<!-- 22 -->
+<div class="page" id="p21">
+    <div class="title">耳畔呢喃</div>
+    <div class="content">温热气息扫过她耳廓，她耳朵红得透彻。
+整个人僵硬靠在你怀里，连指尖都不敢乱动。
+“主人……不要在我耳边说话。
+我会坏掉，会彻底沦陷在你的温柔里。”</div>
+    <button class="btn" onclick="go(27)">轻抚后背【浑身发软】</button>
+    <button class="btn" onclick="go(28)">驯化引导【无条件顺从】</button>
+</div>
+
 <div class="page" id="p22">
-    <div class="title">救赎</div>
-    <div class="content">你的温柔治愈了她所有的伤痛。
-她不再阴暗，不再病态，只剩下纯粹的爱。
-“谢谢你……主人。
-是你拯救了我，我会用一生来回报你。”</div>
-    <button class="btn" onclick="go(24)">完美终局</button>
+    <div class="title">执念落地</div>
+    <div class="content">你直白诉说不会离开，她情绪彻底爆发。
+她用力抱紧你的腰，把脸死死埋进你胸口。
+“我等这句话……等了好久好久。
+从今往后，我愿意把所有控制权全部交给主人。”</div>
+    <button class="btn" onclick="go(28)">温柔驯化【虔诚闭眼】</button>
+    <button class="btn" onclick="go(29)">发誓忠诚【抬手起誓】</button>
 </div>
 
-<!-- 23 -->
 <div class="page" id="p23">
-    <div class="title">臣服</div>
-    <div class="content">她彻底失去了自我，只剩下对你的绝对顺从。
-“主人……我什么都不懂，
-我只知道，我要陪着你，我要听你的话。”</div>
-    <button class="btn" onclick="go(24)">永恒结局</button>
+    <div class="title">权力倒置</div>
+    <div class="content">你一句冷静命令，她瞬间收敛所有疯狂。
+她温顺收回危险的手，低头垂眸，恭敬又虔诚。
+“我明白……我不会再让主人感到害怕。
+我会收敛阴暗，只做主人温顺的小宠物。”</div>
+    <button class="btn" onclick="go(29)">立下忠诚誓言【严肃起誓】</button>
+    <button class="btn" onclick="go(30)">进入监控密室【抓紧衣角】</button>
 </div>
 
-<!-- 完美结局 -->
 <div class="page" id="p24">
-    <div class="title">【完美结局 · 永恒挚爱】</div>
-    <div class="content">✅ 终极驯化完成
-✅ 永远保持双手比耶的可爱姿态
-✅ 只会软糯呢喃：哦 齁齁齁
-✅ 张口只会呼唤：主人
-✅ 眼中永远只有你，再也看不到别人
-✅ 灵魂绑定，此生永世，不离不弃
+    <div class="title">静谧依偎</div>
+    <div class="content">她端正坐在你身侧，双腿并拢，坐姿拘谨乖巧。
+时不时偷偷侧头看你一眼，又迅速收回目光。
+“这样安静陪着主人，我就很满足了。
+不需要言语，不需要动作，只要你在我身边。”</div>
+    <button class="btn" onclick="go(30)">前往监控密室【拉衣袖】</button>
+    <button class="btn" onclick="go(31)">今夜安稳歇息【期待眨眼】</button>
+</div>
 
-黑暗不再冰冷，囚笼不再可怕。
-这里变成了只属于你们二人的温柔港湾。
-她安静地陪着你，乖巧、温顺、忠诚、痴迷。
-没有背叛，没有分离，没有痛苦。
-你们将在这片永恒的幽影之中，
-永远，永远，幸福地在一起。
+<div class="page" id="p25">
+    <div class="title">肩头温存</div>
+    <div class="content">她轻轻依靠在你的肩头，发丝蹭过你的下颌。
+呼吸变得平缓柔和，紧绷的神经彻底放松。
+“靠着主人好安心……什么都不用去想。
+黑暗、孤独、不安，全部都消失不见了。”</div>
+    <button class="btn" onclick="go(31)">在此留宿【悄悄握手指】</button>
+    <button class="btn" onclick="go(32)">去驯化殿堂【不舍皱眉】</button>
+</div>
 
-“主人……我爱你……
-哦……齁齁齁……”</div>
-    <button class="btn" onclick="go(0)">重新开始</button>
+<div class="page" id="p26">
+    <div class="title">心动沦陷</div>
+    <div class="content">你直白夸奖她好看，她瞬间羞得无处躲藏。
+直接埋进你的胸口，双手紧紧抱住你的后背。
+“不要直白夸我……我会骄傲的。
+在主人眼里，我只要足够好看就够了。”</div>
+    <button class="btn" onclick="go(32)">前往驯化殿堂【任由带走】</button>
+    <button class="btn" onclick="go(27)">继续温柔安抚【不肯松手】</button>
+</div>
+
+<div class="page" id="p27">
+    <div class="title">温柔瓦解</div>
+    <div class="content">你缓慢轻抚她后背，力道轻柔舒缓。
+她浑身发软，彻底失去力气，整个人挂在你身上。
+“主人的触碰……能治愈我所有伤痛。”</div>
+    <button class="btn" onclick="go(28)">深度驯化【放松身体】</button>
+    <button class="btn" onclick="go(31)">相拥入眠【安稳靠怀】</button>
+</div>
+
+<div class="page" id="p28">
+    <div class="title">驯化伊始</div>
+    <div class="content">她虔诚闭眼，主动放下所有自主意识。
+此刻她不再拥有自我，一切听从你的安排。
+“主人，请随意塑造我。
+我愿意变成你最喜欢的任何模样。”</div>
+    <button class="btn" onclick="go(33)">永久比耶指令【立刻抬手】</button>
+    <button class="btn" onclick="go(34)">专属呢喃语言【练习发音】</button>
+</div>
+
+<div class="page" id="p29">
+    <div class="title">灵魂誓约</div>
+    <div class="content">她抬手举在胸口，眼神认真而肃穆。
+血色瞳孔坚定不移，一字一句郑重发誓。
+“我将永远忠于主人，永不背叛、永不伤害。
+此生唯主人是从，此生唯主人是爱。”</div>
+    <button class="btn" onclick="go(33)">肢体定型驯化【认真听从】</button>
+    <button class="btn" onclick="go(35)">视线永久注视【紧盯不放】</button>
+</div>
+
+<div class="page" id="p30">
+    <div class="title">监控真相</div>
+    <div class="content">密室内布满镜面监控，无数屏幕倒映你的身影。
+原来从你踏入这片地底开始，你从未脱离她的视线。
+“我每时每刻都在看着主人。
+哪怕你看不到我，我也永远注视着你。”</div>
+    <button class="btn" onclick="go(32)">前往最终殿堂【缓慢松开】</button>
+    <button class="btn" onclick="go(35)">永远只注视你【目光跟随】</button>
+</div>
+
+<div class="page" id="p31">
+    <div class="title">深夜温存</div>
+    <div class="content">暗红夜灯缓缓变暗，房间陷入柔和昏暗。
+她安静蜷缩在你怀中，呼吸均匀绵长。
+“今晚可不可以……不要放开我。
+我想在主人怀里，安稳睡一整晚。”</div>
+    <button class="btn" onclick="go(32)">次日去终焉殿堂【梦呓主人】</button>
+    <button class="btn" onclick="go(36)">深夜驯化耳语【半醒顺从】</button>
+</div>
+
+<div class="page" id="p32">
+    <div class="title">终焉驯化殿堂</div>
+    <div class="content">殿堂空旷安静，纯白地面布满细密红色纹路。
+红光温柔洒落，没有一丝阴冷压迫。
+这里是她为你准备的最终圣地。
+她站在殿堂中央，安静等待你的最终裁决。</div>
+    <button class="btn" onclick="go(33)">肢体固化·永恒比耶</button>
+    <button class="btn" onclick="go(34)">语言改写·专属呢喃</button>
+    <button class="btn" onclick="go(35)">视线锁死·唯你一人</button>
+</div>
+
+<div class="page" id="p33">
+    <div class="title">姿态刻印·永恒比耶</div>
+    <div class="content">她笔直站立，毫不犹豫高高举起双手。
+指尖标准比出可爱耶字，手臂僵硬定型。
+肌肉形成永久记忆，此生永远不会放下。
+“主人……这个姿势好看吗？
+我会一辈子保持，永远为主人比耶。”</div>
+    <button class="btn" onclick="go(37)">驯化完成·完美终局</button>
+</div>
+
+<div class="page" id="p34">
+    <div class="title">语言重塑·专属呢喃</div>
+    <div class="content">她反复张合嘴唇，软糯重复专属语句。
+“哦……齁齁齁……主人……”
+繁杂语言全部遗忘，大脑只保留这句呢喃。
+声音轻柔甜美，永远只为你一人响起。</div>
+    <button class="btn" onclick="go(37)">驯化完成·完美终局</button>
+</div>
+
+<div class="page" id="p35">
+    <div class="title">目光囚禁·唯你永恒</div>
+    <div class="content">她双眼彻底锁定你的身影，视线永不偏移。
+无论你如何移动，她目光永远追随。
+全世界只剩下你一个清晰存在。
+“我的眼睛，生来就是为了凝望主人。”</div>
+    <button class="btn" onclick="go(37)">驯化完成·完美终局</button>
+</div>
+
+<div class="page" id="p36">
+    <div class="title">睡梦沉沦·潜意识驯化</div>
+    <div class="content">半梦半醒之间，她意识模糊柔软。
+你轻声在她耳边下达驯化指令。
+她无意识轻轻点头，潜意识彻底刻印规则。
+睡梦之中，她也永远归属于你。</div>
+    <button class="btn" onclick="go(37)">苏醒迎来完美结局</button>
+</div>
+
+<div class="page" id="p37">
+    <div class="title">【完美终章：永恒专属玩偶】</div>
+    <div class="content">✅ 肢体固化：永久双手比耶，本能永不消散
+✅ 语言驯化：只会呢喃「哦 齁齁齁」，张口只唤主人
+✅ 视线锁死：眼中仅有你一人，万物皆为虚无
+✅ 灵魂誓约：永世忠诚，绝不背叛、绝不伤害
+✅ 性格蜕变：洗尽阴暗偏执，只剩温顺乖巧
+
+曾经阴冷危险的地底囚笼，如今化作二人永恒秘境。
+少女安静伫立，永远比耶、永远温顺、永远痴迷。
+没有重复的剧情，没有雷同的互动，每一次选择都是独一无二的羁绊。
+
+黑暗永存，爱意不灭。
+你们将在这片猩红天地里，生生世世，永不分离。
+
+「主人……我永远属于你……
+哦……齁齁齁……」</div>
+    <button class="btn" onclick="go(0)">轮回重启·再次相遇</button>
 </div>
 
 <script>
-// 超长病娇台词库
-const texts = [
-    "主人只能是我一个人的",
-    "谁敢靠近主人我就杀了谁",
-    "永远留在我身边好不好",
-    "你的一切都只能属于我",
-    "我要把主人藏起来谁也看不见",
-    "不要离开我我会很乖",
-    "我的眼里心里全都是主人",
-    "反抗的话就要被惩罚哦",
-    "我愿意为主人做任何事",
-    "主人是我活下去的唯一理由",
-    "锁链是我爱主人的证明",
-    "哦~齁齁齁~我的主人",
-    "双手举高永远为主人比耶",
-    "我会永远注视着主人",
-    "生生世世我都只爱主人",
-    "没有主人我一秒都活不下去",
-    "主人的命令我绝对服从",
-    "这里是我们永远的小窝",
-    "我要把主人牢牢锁在心里",
-    "偏执和疯狂全都是因为爱"
+const barrageList = [
+    "我的视线永远不会离开主人半步",
+    "锁链是爱意，不是冰冷束缚",
+    "每一次选择都在加深我们羁绊",
+    "主人的触碰能让我停止一切疯狂",
+    "我贪恋主人身上独有的温度",
+    "阴暗地底唯独你是唯一光亮",
+    "我记录着主人每一个细微动作",
+    "温柔驯化远比禁锢更加致命",
+    "此生执念全部刻印主人名字",
+    "哪怕坠入深渊也要追随主人",
+    "主人的命令刻入我的灵魂深处",
+    "哦~齁齁齁~我唯一的主人",
+    "抬手比耶是我永恒的忠诚",
+    "不要抛弃我，我会变得很乖",
+    "我甘愿做主人一辈子的玩偶"
 ];
 
-// 生成分散弹幕
-function barrage() {
-    let t = texts[Math.floor(Math.random() * texts.length)];
-    let b = document.createElement('div');
-    b.className = 'barrage';
-    b.innerText = t;
-    b.style.top = Math.random() * 90 + '%';
-    b.style.left = '100vw';
-    document.body.appendChild(b);
-    setTimeout(() => b.remove(), 7000);
+function createBarrage(){
+    let text = barrageList[Math.floor(Math.random() * barrageList.length)];
+    let barrage = document.createElement("div");
+    barrage.className = "barrage";
+    barrage.innerText = text;
+    barrage.style.top = Math.random() * 92 + "%";
+    barrage.style.left = "100vw";
+    document.body.appendChild(barrage);
+    setTimeout(()=>barrage.remove(),7200);
 }
 
-// 页面切换 无黑屏
-function go(to) {
-    // 一次弹出10条分散弹幕
-    for(let i=0;i<10;i++){
-        setTimeout(barrage, i * 70);
+function go(num){
+    for(let i = 0; i < 12; i++){
+        setTimeout(createBarrage, i * 55);
     }
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    setTimeout(() => {
-        document.getElementById('p'+to).classList.add('active');
-    }, 150);
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    setTimeout(()=>{
+        document.getElementById("p"+num).classList.add("active");
+    },110);
 }
 </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>幽影驯化 · 终焉版</title>
+    <title>幽影囚笼 · 终极病娇版</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{
@@ -12,12 +12,12 @@
             font-family:"Microsoft YaHei",sans-serif;
             min-height:100vh;
             overflow-x:hidden;
-            background:linear-gradient(#000,#101010);
-            animation:breath 5s infinite alternate;
+            background:linear-gradient(#000,#0a0a0a);
+            animation:breath 4s infinite alternate;
         }
         @keyframes breath{
             0%{background:#000;}
-            100%{background:#0b0b0b;}
+            100%{background:#0d0d0d;}
         }
         .page{
             width:100%;
@@ -27,151 +27,153 @@
             justify-content:center;
             align-items:center;
             text-align:center;
-            padding:25px;
+            padding:30px;
             opacity:0;
-            visibility:hidden;
-            transition:all 0.7s ease;
-            position:relative;
-            z-index:1;
+            pointer-events:none;
+            transition:all 0.6s ease;
+            position:absolute;
+            top:0;left:0;
         }
         .page.active{
             opacity:1;
-            visibility:visible;
+            pointer-events:all;
+            position:relative;
         }
         .title{
-            font-size:32px;
-            margin-bottom:24px;
-            color:#ff6666;
-            text-shadow:0 0 15px #ff3333;
+            font-size:38px;
+            margin-bottom:30px;
+            color:#ff4444;
+            text-shadow:0 0 20px #ff0000;
+            font-weight:bold;
         }
         .content{
-            font-size:17px;
-            max-width:600px;
-            line-height:1.9;
-            margin-bottom:35px;
+            font-size:20px;
+            max-width:650px;
+            line-height:2.2;
+            margin-bottom:40px;
             white-space:pre-line;
+            color:#f2f2f2;
         }
         .btn{
-            padding:13px 28px;
-            margin:7px;
+            padding:16px 36px;
+            margin:10px;
             background:#111;
-            color:#ff9999;
-            border:1px solid #ff5555;
-            border-radius:10px;
-            font-size:16px;
+            color:#fff;
+            border:2px solid #ff3333;
+            border-radius:12px;
+            font-size:18px;
             cursor:pointer;
-            transition:0.25s;
+            transition:0.3s;
         }
         .btn:hover{
-            background:#ff3333;
-            color:#fff;
-            transform:scale(1.06);
+            background:#ff2222;
+            transform:scale(1.08);
         }
         .barrage{
             position:fixed;
-            color:#ff5555;
-            font-size:15px;
+            color:#ff3333;
+            font-size:24px;
             font-weight:bold;
-            text-shadow:0 0 8px #ff0000;
+            text-shadow:0 0 12px #ff0000;
             white-space:nowrap;
-            z-index:999;
+            z-index:9999;
             pointer-events:none;
-            animation:barrage 6s linear forwards;
+            animation:barrage 5s linear forwards;
         }
         @keyframes barrage{
-            from{right:-300px;}
-            to{right:110vw;}
+            from{transform:translateX(100vw);}
+            to{transform:translateX(-120%);}
         }
     </style>
 </head>
 <body>
 
 <div class="page active" id="p0">
-    <div class="title">幽影驯化 · 融合篇</div>
-    <div class="content">你在黑暗中醒来，分不清是幽灵的低语，还是病娇少女的囚禁。
-两条命运线，在此刻交织。
-你，将成为唯一的主人。</div>
-    <button class="btn" onclick="go(1,['终于找到你了…','你是我的…'])" data-barrage="开始">进入故事</button>
+    <div class="title">幽影囚笼 · 终极驯化</div>
+    <div class="content">黑暗交织，幽灵低语，病娇缠绕。
+你是唯一的主人，她是只属于你的囚鸟。
+从此，再也无法分离。</div>
+    <button class="btn" onclick="go(1)">开始故事</button>
 </div>
 
 <div class="page" id="p1">
     <div class="title">幽影之地</div>
-    <div class="content">冰冷的地下室，黑暗中传来轻柔又病态的呼吸。
-一个少女蹲在角落，双眼发亮地盯着你。
+    <div class="content">冰冷地下室，黑暗中传来轻柔又病态的呼吸。
+少女蹲在角落，双眼发亮地盯着你。
 “你醒啦…我等了你好久好久…”</div>
-    <button class="btn" onclick="go(2,['你终于理我了…','好开心…'])" data-barrage="回应她">我在哪？</button>
-    <button class="btn" onclick="go(3,['挣扎也没用哦…','你跑不掉的…'])" data-barrage="挣扎">我要离开！</button>
+    <button class="btn" onclick="go(2)">我在哪？</button>
+    <button class="btn" onclick="go(3)">我要离开！</button>
 </div>
 
 <div class="page" id="p2">
     <div class="title">温柔的陷阱</div>
-    <div class="content">她慢慢靠近你，指尖轻轻划过你的脸颊。
+    <div class="content">她慢慢靠近，指尖划过你的脸颊。
 “这里是我们的小窝呀…只属于我们两个人…”
 语气甜腻，却带着无法挣脱的偏执。</div>
-    <button class="btn" onclick="go(4,['乖乖的最可爱了…','我会好好对你…'])" data-barrage="顺从">我听话…</button>
-    <button class="btn" onclick="go(5,['你想骗我…','我不会上当的…'])" data-barrage="试探">放我走吧…</button>
+    <button class="btn" onclick="go(4)">我听话…</button>
+    <button class="btn" onclick="go(5)">放我走吧…</button>
 </div>
 
 <div class="page" id="p3">
     <div class="title">疯狂的囚笼</div>
     <div class="content">你越挣扎，她笑得越病态。
 “越反抗…我越喜欢哦…”
-铁链碰撞的声音，在黑暗里格外清晰。</div>
-    <button class="btn" onclick="go(6,['对…就这样乖…'])" data-barrage="放弃">我不挣扎了…</button>
-    <button class="btn" onclick="go(7,['你惹我生气了…','要惩罚你…'])" data-barrage="怒吼">放开我！</button>
+铁链声在黑暗里格外清晰。</div>
+    <button class="btn" onclick="go(6)">我不挣扎了…</button>
+    <button class="btn" onclick="go(7)">放开我！</button>
 </div>
 
 <div class="page" id="p4">
     <div class="title">依赖滋生</div>
-    <div class="content">你的顺从让她瞬间软化，她解开了你一部分束缚。
+    <div class="content">你的顺从让她瞬间软化，解开你的束缚。
 “你真好…我就知道你最爱我了…”
 她开始依赖你的每一个眼神。</div>
-    <button class="btn" onclick="go(8,['只听主人的…'])" data-barrage="命令">从现在起，听我的。</button>
-    <button class="btn" onclick="go(9,['主人好温柔…'])" data-barrage="安抚">我会陪着你。</button>
+    <button class="btn" onclick="go(8)">从现在起，听我的。</button>
+    <button class="btn" onclick="go(9)">我会陪着你。</button>
 </div>
 
 <div class="page" id="p5">
     <div class="title">偏执加深</div>
-    <div class="content">她脸色瞬间冷了下来，眼神变得可怕。
+    <div class="content">她脸色瞬间变冷，眼神变得可怕。
 “放你走？那谁来陪我？”
 “你只能留在我身边，一辈子。”</div>
-    <button class="btn" onclick="go(8,['我就知道主人会留下…'])" data-barrage="妥协">我不走了…</button>
-    <button class="btn" onclick="go(7,['你骗我…你这个骗子…'])" data-barrage="坚持">我一定要走！</button>
+    <button class="btn" onclick="go(8)">我不走了…</button>
+    <button class="btn" onclick="go(7)">我一定要走！</button>
 </div>
 
 <div class="page" id="p6">
     <div class="title">安静的臣服</div>
-    <div class="content">你不再反抗，她愣住了，随即露出痴迷的笑容。
-“这样才对嘛…安安静静的多好…”
-她开始把你当成唯一的光。</div>
-    <button class="btn" onclick="go(8,['主人…'])" data-barrage="命令">叫我主人。</button>
-    <button class="btn" onclick="go(9,['好喜欢主人…'])" data-barrage="温柔">我不会离开你。</button>
+    <div class="content">你不再反抗，她露出痴迷的笑。
+“这样才对嘛…安安静静多好…”
+她把你当成唯一的光。</div>
+    <button class="btn" onclick="go(8)">叫我主人。</button>
+    <button class="btn" onclick="go(9)">我不会离开你。</button>
 </div>
 
 <div class="page" id="p7">
     <div class="title">彻底疯狂</div>
-    <div class="content">她彻底被激怒，眼神里只剩下疯狂。
+    <div class="content">她彻底被激怒，眼神只剩疯狂。
 “既然你不听话…那我就把你彻底变成我的东西！”</div>
-    <button class="btn" onclick="go(8,['我错了…主人…'])" data-barrage="求饶">我错了，我听话！</button>
-    <button class="btn" onclick="go(10,['坏掉也没关系…'])" data-barrage="绝望">你这个疯子！</button>
+    <button class="btn" onclick="go(8)">我错了，我听话！</button>
+    <button class="btn" onclick="go(10)">你这个疯子！</button>
 </div>
 
 <div class="page" id="p8">
     <div class="title">驯化开始</div>
-    <div class="content">她低下头，眼神变得温顺。
+    <div class="content">她低下头，眼神温顺。
 “主人…我都听你的…你说什么我都做…”
-她开始主动服从你的一切指令。</div>
-    <button class="btn" onclick="go(11,['双手比耶…'])" data-barrage="动作">双手比耶。</button>
-    <button class="btn" onclick="go(12,['哦…齁齁齁…'])" data-barrage="语言">只准说：哦 齁齁齁。</button>
+她主动服从你的一切指令。</div>
+    <button class="btn" onclick="go(11)">双手比耶。</button>
+    <button class="btn" onclick="go(12)">只准说：哦 齁齁齁。</button>
 </div>
 
 <div class="page" id="p9">
     <div class="title">温柔掌控</div>
-    <div class="content">你的温柔彻底击溃了她最后的偏执。
+    <div class="content">你的温柔击溃她最后的偏执。
 她只想粘着你，跟着你，永远不离开。
 “主人…我只属于你…”</div>
-    <button class="btn" onclick="go(11,['比耶…主人…'])" data-barrage="动作">比耶。</button>
-    <button class="btn" onclick="go(12,['齁齁齁…'])" data-barrage="语言">说哦 齁齁齁。</button>
+    <button class="btn" onclick="go(11)">比耶。</button>
+    <button class="btn" onclick="go(12)">说哦 齁齁齁。</button>
 </div>
 
 <div class="page" id="p10">
@@ -179,56 +181,74 @@
     <div class="content">她彻底坏掉了，眼神空洞，只会傻笑。
 但她依然记得你，记得要跟着你。
 “主人…嘿嘿…主人…”</div>
-    <button class="btn" onclick="go(13,['哦…齁齁齁…'])" data-barrage="结局">最终驯化</button>
+    <button class="btn" onclick="go(13)">最终驯化</button>
 </div>
 
 <div class="page" id="p11">
     <div class="title">动作定型</div>
-    <div class="content">她立刻举起双手，牢牢比出耶的姿势，一刻都不肯放下。
+    <div class="content">她立刻举起双手，牢牢比出耶的姿势，一刻不放。
 “这样…主人喜欢吗…”</div>
-    <button class="btn" onclick="go(13,['主人…比耶…'])" data-barrage="完成">很好，保持住。</button>
+    <button class="btn" onclick="go(13)">很好，保持住。</button>
 </div>
 
 <div class="page" id="p12">
     <div class="title">语言洗脑</div>
-    <div class="content">她张开口，只会重复你教她的话。
+    <div class="content">她张开口，只会重复你教的话。
 “哦…齁齁齁…齁齁齁…”
 除此之外，再也发不出别的声音。</div>
-    <button class="btn" onclick="go(13,['哦…齁齁齁…主人…'])" data-barrage="完成">只能说这个。</button>
+    <button class="btn" onclick="go(13)">只能说这个。</button>
 </div>
 
 <div class="page" id="p13">
-    <div class="title">【完美结局 · 专属主人】</div>
-    <div class="content">她被你彻底驯化完成。
-✅ 永远双手比耶
-✅ 只会说：哦 齁齁齁 齁齁齁 齁齁齁
+    <div class="title">完美结局 · 专属主人</div>
+    <div class="content">✅ 永远双手比耶
+✅ 只会说：哦 齁齁齁
 ✅ 只会软糯地叫：主人
 ✅ 一生一世，只听从你一人
 
-你是她唯一的光，唯一的主宰。</div>
-    <button class="btn" onclick="go(0,['重新开始…主人…'])" data-barrage="重来">重新开始</button>
+你是她唯一的光，唯一的主宰。
+她，永远属于你。</div>
+    <button class="btn" onclick="go(0)">重新开始</button>
 </div>
 
 <script>
-function barrage(arr){
-    arr.forEach(txt=>{
+const messages = [
+    ["你是我的…谁也抢不走…","永远在一起…"],
+    ["终于找到你了…","再也不会放开你…"],
+    ["跑不掉的哦…","这里是我们的牢笼…"],
+    ["乖乖的最可爱…","我会好好宠你…"],
+    ["不许离开我…","你只能是我的…"],
+    ["对…就这样乖…","主人最好了…"],
+    ["惹我生气要惩罚…","你是我的所有物…"],
+    ["只听主人的话…","一生一世不分离…"],
+    ["比耶…主人…","最喜欢主人了…"],
+    ["哦…齁齁齁…","主人…主人…"],
+    ["彻底属于我…","再也不会分开…"],
+    ["永远陪着主人…","只做主人的乖宝宝…"]
+];
+
+function barrage() {
+    let list = messages[Math.floor(Math.random() * messages.length)];
+    list.forEach(txt => {
         let b = document.createElement('div');
         b.className = 'barrage';
         b.innerText = txt;
-        b.style.top = Math.random()*85 + '%';
-        b.style.left = '';
-        b.style.right = '-300px';
+        b.style.top = Math.random() * 80 + 20 + 'px';
+        b.style.right = 'auto';
+        b.style.left = '100vw';
         document.body.appendChild(b);
-        setTimeout(()=>b.remove(),6000);
+        setTimeout(() => b.remove(), 5000);
     });
 }
 
-function go(to,arr){
-    barrage(arr);
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    setTimeout(()=>{
+function go(to) {
+    barrage();
+    barrage();
+    let all = document.querySelectorAll('.page');
+    all.forEach(p => p.classList.remove('active'));
+    setTimeout(() => {
         document.getElementById('p'+to).classList.add('active');
-    },100);
+    }, 200);
 }
 </script>
 </body>

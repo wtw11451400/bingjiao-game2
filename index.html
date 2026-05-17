@@ -76,11 +76,12 @@
             position:fixed;
             font-size:26px;
             font-weight:900;
-            text-shadow:0 0 15px currentColor;
+            color:#ff2222;
+            text-shadow:0 0 15px #ff0000;
             white-space:nowrap;
             z-index:9999;
             pointer-events:none;
-            animation:barrageMove 6s linear forwards;
+            animation:barrageMove 7s linear forwards;
         }
         @keyframes barrageMove{
             from{transform:translateX(100vw);}
@@ -236,59 +237,58 @@
 </div>
 
 <script>
-// 六色弹幕配色
-const colorList = ['#ff2222','#ff69b4','#5ac8fa','#98fb98','#ffd700','#c87aff'];
-// 海量重度病娇台词库
+// 海量加长病娇台词库
 const wordList = [
-    "主人只能属于我一个人",
-    "敢离开我就永远锁住你",
-    "余生所有时光全部归我",
-    "眼中不许出现任何人",
-    "把灵魂与身心全都献上",
-    "乖乖听话才会被疼爱",
-    "逃离主人只会受到惩罚",
-    "永世陪伴不离不弃",
-    "满心执念全部赠予主人",
-    "被主人驯化是我的荣幸",
-    "哦~齁齁齁~最爱的主人",
-    "双手举高永远不许落下",
-    "此生唯主人马首是瞻",
-    "封闭外界只守主人身旁",
-    "阴暗之中唯独贪恋你",
-    "违抗主人心意不可原谅",
-    "化作傀儡永远追随主人",
-    "囚笼之内只有我们二人",
-    "生生世世依附主人存活",
-    "主人的命令即是天命"
+    "主人只能完完整整属于我一个人",
+    "胆敢生出离开的念头就永远将你锁住",
+    "往后余生朝夕相伴全部都归于我",
+    "你的眼眸之中绝对不可以出现其他人",
+    "把自己的灵魂与身心全部都奉献给我",
+    "乖乖顺从听话才能得到我的偏爱与疼爱",
+    "肆意逃离主人身边只会迎来严厉的惩罚",
+    "生生世世永世相守永远都不会彼此分开",
+    "我所有满心的执念与爱意全都赠予主人",
+    "能够被主人彻底驯化是我此生最大荣幸",
+    "哦~齁齁齁~我此生最最挚爱的主人",
+    "双手高高举起保持姿势永远都不许落下",
+    "这辈子此生此世只听从主人一人的吩咐",
+    "隔绝所有外界纷扰只静静守候在主人身旁",
+    "身处无尽黑暗之中唯独贪恋主人你的温度",
+    "胆敢违抗主人的心意是绝对不能够被原谅",
+    "甘愿化作无声傀儡一生一世永远追随主人",
+    "这片封闭囚笼里面只允许存在我们两个人",
+    "往后漫长岁月里我只依靠主人一人存活",
+    "主人下达的任何命令便是我此生的天命",
+    "想逃去哪里都没有用你注定逃不出我的掌心",
+    "每一天每一夜都只想时时刻刻黏在主人身边",
+    "慢慢抹去你所有自主意识彻底融入我的世界",
+    "只要能够留在主人身边我愿意放弃一切自由"
 ];
 
-// 批量生成超多彩色弹幕
+// 生成分散红色弹幕
 function makeBarrage(){
     let ranText = wordList[Math.floor(Math.random() * wordList.length)];
-    let ranColor = colorList[Math.floor(Math.random() * colorList.length)];
-    let topY = Math.random() * 85 + 5;
+    // 垂直位置大范围分散
+    let topY = Math.random() * 90;
     let dom = document.createElement("div");
     dom.className = "barrage";
     dom.innerText = ranText;
-    dom.style.color = ranColor;
-    dom.style.top = topY + "px";
+    dom.style.top = topY + "%";
     dom.style.left = "100vw";
     document.body.appendChild(dom);
-    setTimeout(()=>dom.remove(),6000);
+    setTimeout(()=>dom.remove(),7000);
 }
 
-// 页面切换核心函数 彻底修复黑屏
+// 页面切换 彻底修复黑屏
 function switchPage(num){
-    // 一次弹出6条密集弹幕 氛围感拉满
-    for(let i=0;i<6;i++){
-        makeBarrage();
+    // 单次弹出8条 分散排布 数量充足
+    for(let i = 0; i < 8; i++){
+        setTimeout(()=>makeBarrage(),i * 80);
     }
-    // 清除所有页面激活状态
     let allPage = document.querySelectorAll(".page");
     allPage.forEach(item=>{
         item.classList.remove("active");
     });
-    // 延迟跳转杜绝黑屏卡顿
     setTimeout(()=>{
         document.getElementById("p"+num).classList.add("active");
     },120);
